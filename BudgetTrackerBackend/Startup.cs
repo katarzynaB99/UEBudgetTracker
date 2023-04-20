@@ -28,8 +28,8 @@ namespace BudgetTrackerBackend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            /*services.AddDbContext<BudgetTrackerContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("BudgetTrackerDatabase")));*/
+            services.AddDbContext<BudgetTrackerContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("BudgetTrackerDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
