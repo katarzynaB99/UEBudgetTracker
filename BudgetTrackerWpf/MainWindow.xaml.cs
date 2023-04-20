@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,15 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BudgetTrackerWpf.Views;
 
-namespace BudgetTrackerWpf.Views.Pages.Bills
+namespace BudgetTrackerWpf
 {
     /// <summary>
-    /// Interaction logic for Bills.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Bills : Page
+    public partial class MainWindow : Window
     {
-        public Bills()
+        public MainWindow()
         {
             InitializeComponent();
         }

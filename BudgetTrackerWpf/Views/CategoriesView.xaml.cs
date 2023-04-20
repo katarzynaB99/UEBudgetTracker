@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BudgetTrackerWpf.Views.Pages.Analytics
+namespace BudgetTrackerWpf.Views
 {
     /// <summary>
-    /// Interaction logic for Analytics.xaml
+    /// Interaction logic for CategoriesView.xaml
     /// </summary>
-    public partial class Analytics : Page
+    public partial class CategoriesView : UserControl
     {
-        public Analytics()
+        public CategoriesView()
         {
             InitializeComponent();
         }

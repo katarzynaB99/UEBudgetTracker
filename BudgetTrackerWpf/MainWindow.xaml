@@ -1,0 +1,39 @@
+﻿<Window x:Class="BudgetTrackerWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:BudgetTrackerWpf.ViewModels"
+        xmlns:views="clr-namespace:BudgetTrackerWpf.Views"
+        xmlns:local="clr-namespace:BudgetTrackerWpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1200">
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:AccountsViewModel}">
+                <views:AccountsView></views:AccountsView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:AnalyticsViewModel}">
+                <views:AnalyticsView></views:AnalyticsView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:BillsViewModel}">
+                <views:BillsView></views:BillsView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:CategoriesViewModel}">
+                <views:CategoriesView></views:CategoriesView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+                <views:DashboardView></views:DashboardView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView></views:LoginView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:RegisterViewModel}">
+                <views:RegisterView></views:RegisterView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:TransactionsViewModel}">
+                <views:TransactionsView></views:TransactionsView>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
+</Window>

@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BudgetTrackerWpf.Views.Common
+namespace BudgetTrackerWpf.Views
 {
     /// <summary>
-    /// Interaction logic for UpdateModal.xaml
+    /// Interaction logic for TransactionsView.xaml
     /// </summary>
-    public partial class UpdateModal : UserControl
+    public partial class TransactionsView : UserControl
     {
-        public UpdateModal()
+        public TransactionsView()
         {
             InitializeComponent();
         }

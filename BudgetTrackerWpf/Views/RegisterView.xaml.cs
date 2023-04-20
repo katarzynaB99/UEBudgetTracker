@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BudgetTrackerWpf.Views.Pages.Accounts
+namespace BudgetTrackerWpf.Views
 {
     /// <summary>
-    /// Interaction logic for Accounts.xaml
+    /// Interaction logic for RegisterView.xaml
     /// </summary>
-    public partial class Accounts : Page
+    public partial class RegisterView : UserControl
     {
-        public Accounts()
+        public RegisterView()
         {
             InitializeComponent();
         }

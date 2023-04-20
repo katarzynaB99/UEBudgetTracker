@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BudgetTrackerWpf.Views.Common
+namespace BudgetTrackerWpf.Views
 {
     /// <summary>
-    /// Interaction logic for ConfirmDeleteModal.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class ConfirmDeleteModal : UserControl
+    public partial class LoginView : UserControl
     {
-        public ConfirmDeleteModal()
+        public LoginView()
         {
             InitializeComponent();
         }
