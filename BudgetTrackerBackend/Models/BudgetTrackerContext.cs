@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -24,6 +26,7 @@ namespace BudgetTrackerBackend.Models
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<TransactionType> TransactionType { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
