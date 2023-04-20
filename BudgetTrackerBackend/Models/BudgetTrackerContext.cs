@@ -74,6 +74,7 @@ namespace BudgetTrackerBackend.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
                 entity.Property(e => e.Amount).HasColumnType("DOUBLE");
+                entity.Property(e => e.TransactionDate).IsRequired();
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Transaction)
                     .HasForeignKey(d => d.AccountId)
