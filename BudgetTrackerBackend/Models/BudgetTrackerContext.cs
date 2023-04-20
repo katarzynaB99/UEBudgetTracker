@@ -29,58 +29,55 @@ namespace BudgetTrackerBackend.Models
         {
             modelBuilder.Entity<Account>(entity =>
             {
-                entity.HasIndex(e => e.Name)
-                    .IsUnique();
-
+                entity.HasIndex(e => e.Name).IsUnique();
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name).IsRequired();
-
                 entity.Property(e => e.StartingAmount).HasColumnType("DOUBLE");
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Account)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Bill>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Amount).HasColumnType("DOUBLE");
-
                 entity.Property(e => e.DueDate).IsRequired();
-
                 entity.Property(e => e.Name).IsRequired();
-
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Bill)
                     .HasForeignKey(d => d.CategoryId);
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Bill)
+                    .HasForeignKey(d => d.UserId);
             });
 
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name).IsRequired();
-
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.Category)
                     .HasForeignKey(d => d.TypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Category)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Transaction>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Amount).HasColumnType("DOUBLE");
-
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Transaction)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.Cascade);
-
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Transaction)
                     .HasForeignKey(d => d.CategoryId);
-
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.Transaction)
                     .HasForeignKey(d => d.TypeId);
@@ -89,7 +86,6 @@ namespace BudgetTrackerBackend.Models
             modelBuilder.Entity<TransactionType>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name).IsRequired();
             });
 

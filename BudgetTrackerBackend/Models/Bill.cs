@@ -15,7 +15,9 @@ namespace BudgetTrackerBackend.Models
         public string DueDate { get; set; }
         public long Paid { get; set; }
         public long? CategoryId { get; set; }
+        public long UserId { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual User User { get; set; }
     }
 }
