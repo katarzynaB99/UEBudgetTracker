@@ -3,17 +3,47 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using BudgetTrackerWpf.Commands;
+using BudgetTrackerWpf.Services;
 using BudgetTrackerWpf.Stores;
 
 namespace BudgetTrackerWpf.ViewModels
 {
-    class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
-        public ICommand NavigateRegisterCommand { get; }
+        private string _username;
+        private string _password;
 
-        public LoginViewModel(NavigationStore navigationStore)
+        public string Username
         {
-            NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(navigationStore, () => new RegisterViewModel(navigationStore));
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged(nameof(Username));
+            }
+        }
+
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        public ICommand NavigateRegisterCommand { get; }
+        public ICommand LoginCommand { get; }
+
+        public LoginViewModel(NavigationStore navigationStore, UserStore userStore)
+        {
+            NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(
+                new NavigationService<RegisterViewModel>(navigationStore,
+                    () => new RegisterViewModel(navigationStore, userStore)));
+            LoginCommand = new LoginCommand(this, userStore,
+                new NavigationService<DashboardViewModel>(navigationStore,
+                    () => new DashboardViewModel(navigationStore, userStore)));
         }
     }
 }

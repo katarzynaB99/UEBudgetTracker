@@ -18,7 +18,8 @@ namespace BudgetTrackerWpf
         protected override void OnStartup(StartupEventArgs e)
         {
             NavigationStore navigationStore = new NavigationStore();
-            navigationStore.CurrentViewModel = new LoginViewModel(navigationStore);
+            UserStore userStore = new UserStore();
+            navigationStore.CurrentViewModel = new LoginViewModel(navigationStore, userStore);
 
             MainWindow = new MainWindow()
             {

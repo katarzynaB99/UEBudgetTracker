@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BudgetTrackerWpf.Stores;
 
 namespace BudgetTrackerWpf.ViewModels
 {
-    class DashboardViewModel : ViewModelBase
+    public class DashboardViewModel : ViewModelBase
     {
+        public DashboardViewModel(NavigationStore navigationStore, UserStore userStore)
+        {
+
+        }
     }
 }

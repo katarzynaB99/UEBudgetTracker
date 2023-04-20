@@ -14,7 +14,7 @@
         <Label Content="Password" HorizontalAlignment="Left" Margin="453,0,0,0" VerticalAlignment="Center"/>
         <PasswordBox HorizontalAlignment="Left" Margin="518,0,0,0" VerticalAlignment="Center" Width="120"/>
 
-        <Button Content="Sign in" HorizontalAlignment="Left" Margin="546,522,0,0" VerticalAlignment="Top"/>
+        <Button Content="Sign in" HorizontalAlignment="Left" Margin="546,522,0,0" VerticalAlignment="Top" Command="{Binding LoginCommand}"/>
         
         <Button Content="Register" HorizontalAlignment="Left" Margin="546,568,0,0" VerticalAlignment="Top" Command="{Binding NavigateRegisterCommand}"/>
     </Grid>
