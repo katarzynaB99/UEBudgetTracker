@@ -3,36 +3,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:BudgetTrackerWpf.ViewModels"
-        xmlns:views="clr-namespace:BudgetTrackerWpf.Views"
+        xmlns:ViewModels="clr-namespace:BudgetTrackerWpf.ViewModels"
+        xmlns:Views="clr-namespace:BudgetTrackerWpf.Views"
         xmlns:local="clr-namespace:BudgetTrackerWpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1200">
     <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>
-            <DataTemplate DataType="{x:Type viewmodels:AccountsViewModel}">
-                <views:AccountsView></views:AccountsView>
+            <DataTemplate DataType="{x:Type ViewModels:AccountsViewModel}">
+                <Views:AccountsView></Views:AccountsView>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:AnalyticsViewModel}">
-                <views:AnalyticsView></views:AnalyticsView>
+            <DataTemplate DataType="{x:Type ViewModels:AnalyticsViewModel}">
+                <Views:AnalyticsView></Views:AnalyticsView>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:BillsViewModel}">
-                <views:BillsView></views:BillsView>
+            <DataTemplate DataType="{x:Type ViewModels:BillsViewModel}">
+                <Views:BillsView></Views:BillsView>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:CategoriesViewModel}">
-                <views:CategoriesView></views:CategoriesView>
+            <DataTemplate DataType="{x:Type ViewModels:CategoriesViewModel}">
+                <Views:CategoriesView></Views:CategoriesView>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
-                <views:DashboardView></views:DashboardView>
+            <DataTemplate DataType="{x:Type ViewModels:DashboardViewModel}">
+                <Views:DashboardView></Views:DashboardView>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
-                <views:LoginView></views:LoginView>
+            <DataTemplate DataType="{x:Type ViewModels:LoginViewModel}">
+                <Views:LoginView></Views:LoginView>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:RegisterViewModel}">
-                <views:RegisterView></views:RegisterView>
+            <DataTemplate DataType="{x:Type ViewModels:RegisterViewModel}">
+                <Views:RegisterView></Views:RegisterView>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:TransactionsViewModel}">
-                <views:TransactionsView></views:TransactionsView>
+            <DataTemplate DataType="{x:Type ViewModels:TransactionsViewModel}">
+                <Views:TransactionsView></Views:TransactionsView>
             </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
