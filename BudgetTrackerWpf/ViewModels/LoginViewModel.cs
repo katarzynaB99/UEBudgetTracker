@@ -12,6 +12,7 @@ namespace BudgetTrackerWpf.ViewModels
     {
         private string _username;
         private string _password;
+        private string _errorMessage;
 
         public string Username
         {
@@ -19,6 +20,7 @@ namespace BudgetTrackerWpf.ViewModels
             set
             {
                 _username = value;
+                ErrorMessage = null;
                 OnPropertyChanged(nameof(Username));
             }
         }
@@ -29,7 +31,18 @@ namespace BudgetTrackerWpf.ViewModels
             set
             {
                 _password = value;
+                ErrorMessage = null;
                 OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
             }
         }
 
