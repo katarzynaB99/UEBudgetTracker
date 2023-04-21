@@ -13,6 +13,7 @@ namespace BudgetTrackerWpf.Commands
     {
         private readonly LoginViewModel _viewModel;
         private readonly UserStore _userStore;
+        private readonly string path = "https://localhost:5001/api/Users";
 
         private readonly NavigationService<DashboardViewModel> _navigationService;
 

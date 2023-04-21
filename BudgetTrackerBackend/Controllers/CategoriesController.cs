@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BudgetTrackerBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BudgetTrackerBackend.Controllers
 {
@@ -22,6 +23,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/Categories
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategory()
         {
             return await _context.Category.ToListAsync();
@@ -29,6 +31,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Category>> GetCategory(long id)
         {
             var category = await _context.Category.FindAsync(id);
@@ -45,6 +48,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutCategory(long id, Category category)
         {
             if (id != category.Id)
@@ -77,6 +81,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
             _context.Category.Add(category);
@@ -101,6 +106,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<Category>> DeleteCategory(long id)
         {
             var category = await _context.Category.FindAsync(id);

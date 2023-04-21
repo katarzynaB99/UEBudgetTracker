@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BudgetTrackerBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BudgetTrackerBackend.Controllers
 {
@@ -22,6 +23,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/Bills
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Bill>>> GetBill()
         {
             return await _context.Bill.ToListAsync();
@@ -29,6 +31,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/Bills/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Bill>> GetBill(long id)
         {
             var bill = await _context.Bill.FindAsync(id);
@@ -45,6 +48,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutBill(long id, Bill bill)
         {
             if (id != bill.Id)
@@ -77,6 +81,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Bill>> PostBill(Bill bill)
         {
             _context.Bill.Add(bill);
@@ -101,6 +106,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // DELETE: api/Bills/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<Bill>> DeleteBill(long id)
         {
             var bill = await _context.Bill.FindAsync(id);

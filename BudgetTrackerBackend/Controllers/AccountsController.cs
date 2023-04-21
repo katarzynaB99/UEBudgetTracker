@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BudgetTrackerBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BudgetTrackerBackend.Controllers
 {
@@ -22,6 +23,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/Accounts
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Account>>> GetAccount()
         {
             return await _context.Account.ToListAsync();
@@ -29,6 +31,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/Accounts/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Account>> GetAccount(long id)
         {
             var account = await _context.Account.FindAsync(id);
@@ -45,6 +48,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutAccount(long id, Account account)
         {
             if (id != account.Id)
@@ -77,6 +81,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Account>> PostAccount(Account account)
         {
             _context.Account.Add(account);
@@ -101,6 +106,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // DELETE: api/Accounts/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<Account>> DeleteAccount(long id)
         {
             var account = await _context.Account.FindAsync(id);

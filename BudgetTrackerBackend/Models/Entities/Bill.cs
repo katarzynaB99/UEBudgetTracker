@@ -12,7 +12,7 @@ namespace BudgetTrackerBackend.Models
         public long Id { get; set; }
         public double Amount { get; set; }
         public string Name { get; set; }
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
         public long Paid { get; set; }
         public long? CategoryId { get; set; }
         public long UserId { get; set; }

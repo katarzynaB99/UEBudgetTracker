@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BudgetTrackerBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BudgetTrackerBackend.Controllers
 {
@@ -22,6 +23,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/TransactionTypes
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<TransactionType>>> GetTransactionType()
         {
             return await _context.TransactionType.ToListAsync();
@@ -29,6 +31,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // GET: api/TransactionTypes/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<TransactionType>> GetTransactionType(long id)
         {
             var transactionType = await _context.TransactionType.FindAsync(id);
@@ -45,6 +48,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutTransactionType(long id, TransactionType transactionType)
         {
             if (id != transactionType.Id)
@@ -77,6 +81,7 @@ namespace BudgetTrackerBackend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<TransactionType>> PostTransactionType(TransactionType transactionType)
         {
             _context.TransactionType.Add(transactionType);
@@ -101,6 +106,7 @@ namespace BudgetTrackerBackend.Controllers
 
         // DELETE: api/TransactionTypes/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<TransactionType>> DeleteTransactionType(long id)
         {
             var transactionType = await _context.TransactionType.FindAsync(id);
