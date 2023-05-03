@@ -15,7 +15,7 @@ namespace BudgetTracker.EntityFramework.Services
             _contextFactory = contextFactory;
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAll()
         {
             await using var context = _contextFactory.CreateDbContext();
             IEnumerable<T> entities = await context.Set<T>().ToListAsync();
@@ -29,7 +29,7 @@ namespace BudgetTracker.EntityFramework.Services
             return entity;
         }
 
-        public async Task<T> Create(T entity)
+        public virtual async Task<T> Create(T entity)
         {
             await using var context = _contextFactory.CreateDbContext();
             var createdResult = await context.Set<T>().AddAsync(entity);
@@ -38,7 +38,7 @@ namespace BudgetTracker.EntityFramework.Services
             return createdResult.Entity;
         }
 
-        public async Task<T> Update(int id, T entity)
+        public virtual async Task<T> Update(int id, T entity)
         {
             await using var context = _contextFactory.CreateDbContext();
             entity.Id = id;
@@ -48,7 +48,7 @@ namespace BudgetTracker.EntityFramework.Services
             return entity;
         }
 
-        public async Task<bool> Delete(int id)
+        public virtual async Task<bool> Delete(int id)
         {
             await using var context = _contextFactory.CreateDbContext();
             var entity = await context.Set<T>().FirstOrDefaultAsync((e) => e.Id == id);
