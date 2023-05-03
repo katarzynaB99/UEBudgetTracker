@@ -10,8 +10,10 @@ using BudgetTracker.Domain.Services;
 using BudgetTracker.Domain.Services.AuthenticationServices;
 using BudgetTracker.EntityFramework;
 using BudgetTracker.EntityFramework.Services;
+using BudgetTracker.WPF.State.Assets;
 using BudgetTracker.WPF.State.Authenticators;
 using BudgetTracker.WPF.State.Navigators;
+using BudgetTracker.WPF.State.Users;
 using BudgetTracker.WPF.ViewModels;
 using BudgetTracker.WPF.ViewModels.Factories;
 using Microsoft.AspNet.Identity;
@@ -102,8 +104,10 @@ namespace BudgetTracker.WPF
                 return () => services.GetRequiredService<TransactionsViewModel>();
             });
 
-            services.AddScoped<INavigator, Navigator>();
-            services.AddScoped<IAuthenticator, Authenticator>();
+            services.AddSingleton<INavigator, Navigator>();
+            services.AddSingleton<IAuthenticator, Authenticator>();
+            services.AddSingleton<IUserStore, UserStore>();
+            services.AddSingleton<AssetStore>();
             services.AddScoped<MainViewModel>();
 
             services.AddScoped<MainWindow>(s =>

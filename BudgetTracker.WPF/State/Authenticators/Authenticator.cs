@@ -4,33 +4,34 @@ using System.Text;
 using System.Threading.Tasks;
 using BudgetTracker.Domain.Models;
 using BudgetTracker.Domain.Services.AuthenticationServices;
-using BudgetTracker.WPF.Models;
+using BudgetTracker.WPF.State.Users;
 
 namespace BudgetTracker.WPF.State.Authenticators
 {
-    public class Authenticator : ObservableObject, IAuthenticator
+    public class Authenticator : IAuthenticator
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly IUserStore _userStore;
 
-        public Authenticator(IAuthenticationService authenticationService)
+        public Authenticator(IAuthenticationService authenticationService, IUserStore userStore)
         {
             _authenticationService = authenticationService;
+            _userStore = userStore;
         }
-
-        private User _currentUser;
 
         public User CurrentUser
         {
-            get => _currentUser;
+            get => _userStore.CurrentUser;
             private set
             {
-                _currentUser = value;
-                OnPropertyChanged(nameof(CurrentUser));
-                OnPropertyChanged(nameof(IsLoggedIn));
+                _userStore.CurrentUser = value;
+                StateChanged?.Invoke();
             }
         }
 
         public bool IsLoggedIn => CurrentUser != null;
+
+        public event Action StateChanged;
 
         public async Task<RegistrationResult> Register(string username, string password, string confirmPassword)
         {

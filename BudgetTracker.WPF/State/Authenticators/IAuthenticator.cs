@@ -15,5 +15,6 @@ namespace BudgetTracker.WPF.State.Authenticators
         Task<RegistrationResult> Register(string username, string password, string confirmPassword);
         Task<bool> Login(string username, string password);
         void SignOut();
+        event Action StateChanged;
     }
 }
