@@ -2,33 +2,68 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using BudgetTracker.Domain.Exceptions;
 using BudgetTracker.Domain.Models;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNet.Identity;
 
 namespace BudgetTracker.Domain.Services.AuthenticationServices
 {
     public class AuthenticationService : IAuthenticationService
     {
-        public async Task<bool> Register(string username, string password, string confirmPassword)
+        private readonly IUserService _userService;
+        private readonly IPasswordHasher _passwordHasher;
+        public AuthenticationService(IUserService userService, IPasswordHasher passwordHasher)
         {
-            var success = false;
+            _userService = userService;
+            _passwordHasher = passwordHasher;
+        }
 
-            if (password == confirmPassword)
+        public async Task<RegistrationResult> Register(string username, string password, string confirmPassword)
+        {
+            var result = RegistrationResult.Success;
+
+            if (password != confirmPassword)
             {
-                var hasher = new PasswordHasher<User>();
-                var user = new User
-                {
-                    Username = username
-                };
-                user.Password = hasher.HashPassword(user, password);
+                result = RegistrationResult.PasswordsDoNotMatch;
             }
 
-            return success;
+            var usernameUser = await _userService.GetByUsername(username);
+
+            if (usernameUser != null)
+            {
+                result = RegistrationResult.UsernameAlreadyExists;
+            }
+
+            if (result == RegistrationResult.Success)
+            {
+                var hashedPassword = _passwordHasher.HashPassword(password);
+
+                var user = new User
+                {
+                    Username = username,
+                    Password = hashedPassword,
+                    CreationDate = DateTime.Now
+                };
+
+                await _userService.Create(user);
+            }
+
+            return result;
         }
 
         public async Task<User> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            User storedUser = await _userService.GetByUsername(username);
+
+            var passwordsMatch =
+                _passwordHasher.VerifyHashedPassword(storedUser.Password, password);
+
+            if (passwordsMatch != PasswordVerificationResult.Success)
+            {
+                throw new InvalidPasswordException(username, password);
+            }
+
+            return storedUser;
         }
     }
 }

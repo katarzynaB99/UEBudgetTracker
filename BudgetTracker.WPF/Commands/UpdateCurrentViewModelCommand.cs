@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Input;
 using BudgetTracker.WPF.State.Navigators;
 using BudgetTracker.WPF.ViewModels;
+using BudgetTracker.WPF.ViewModels.Factories;
 
 namespace BudgetTracker.WPF.Commands
 {
@@ -11,11 +12,14 @@ namespace BudgetTracker.WPF.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        private INavigator _navigator;
+        private readonly INavigator _navigator;
+        private readonly IBudgetTrackerViewModelAbstractFactory _viewModelFactory;
 
-        public UpdateCurrentViewModelCommand(INavigator navigator)
+        public UpdateCurrentViewModelCommand(INavigator navigator,
+            IBudgetTrackerViewModelAbstractFactory viewModelFactory)
         {
             _navigator = navigator;
+            _viewModelFactory = viewModelFactory;
         }
 
         public bool CanExecute(object parameter)
@@ -27,18 +31,7 @@ namespace BudgetTracker.WPF.Commands
         {
             if (parameter is ViewType viewType)
             {
-                _navigator.CurrentViewModel = viewType switch
-                {
-                    ViewType.Accounts => new AccountsViewModel(),
-                    ViewType.Analytics => new AnalyticsViewModel(),
-                    ViewType.Bills => new BillsViewModel(),
-                    ViewType.Categories => new CategoriesViewModel(),
-                    ViewType.Dashboard => new DashboardViewModel(),
-                    ViewType.SignIn => new SignInViewModel(),
-                    ViewType.SignUp => new SignUpViewModel(),
-                    ViewType.Transactions => new TransactionsViewModel(),
-                    _ => throw new NotSupportedException("This type of view model does not exist"),
-                };
+                _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(viewType);
             }
         }
     }

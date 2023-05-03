@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Input;
 using BudgetTracker.WPF.Commands;
 using BudgetTracker.WPF.Models;
+using BudgetTracker.WPF.ViewModels.Factories;
 
 namespace BudgetTracker.WPF.State.Navigators
 {
@@ -23,6 +24,11 @@ namespace BudgetTracker.WPF.State.Navigators
             }
         }
 
-        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
+        public ICommand UpdateCurrentViewModelCommand { get; set; }
+
+        public Navigator(IBudgetTrackerViewModelAbstractFactory viewModelFactory)
+        {
+            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(this, viewModelFactory);
+        }
     }
 }

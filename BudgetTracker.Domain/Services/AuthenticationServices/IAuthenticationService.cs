@@ -6,9 +6,16 @@ using BudgetTracker.Domain.Models;
 
 namespace BudgetTracker.Domain.Services.AuthenticationServices
 {
+    public enum RegistrationResult
+    {
+        Success,
+        PasswordsDoNotMatch,
+        UsernameAlreadyExists
+    }
+
     public interface IAuthenticationService
     {
-        Task<bool> Register(string username, string password, string confirmPassword);
+        Task<RegistrationResult> Register(string username, string password, string confirmPassword);
         Task<User> Login(string username, string password);
     }
 }
