@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BudgetTracker.Domain\BudgetTracker.Domain.csproj" />
+    <ProjectReference Include="..\BudgetTracker.EntityFramework\BudgetTracker.EntityFramework.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
+using BudgetTrackerWpf.Models;
 using BudgetTrackerWpf.Stores;
 
 namespace BudgetTrackerWpf.ViewModels
@@ -9,7 +11,6 @@ namespace BudgetTrackerWpf.ViewModels
     {
         public DashboardViewModel(NavigationStore navigationStore, UserStore userStore)
         {
-
         }
     }
 }

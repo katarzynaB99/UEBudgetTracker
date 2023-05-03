@@ -13,6 +13,7 @@ namespace BudgetTrackerWpf.Models
         public long Id { get; set; }
         public string Name { get; set; }
         public double StartingAmount { get; set; }
+        public double CurrentBalance { get; set; }
         public long UserId { get; set; }
 
         public virtual ICollection<Transaction> Transaction { get; set; }
