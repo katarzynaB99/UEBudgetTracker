@@ -18,9 +18,28 @@ namespace BudgetTracker.WPF.Views
     /// </summary>
     public partial class SignInView : UserControl
     {
+        public static readonly DependencyProperty SignInCommandProperty =
+            DependencyProperty.Register("SignInCommand", typeof(ICommand), typeof(SignInView),
+                new PropertyMetadata(null));
+
+        public ICommand SignInCommand
+        {
+            get => (ICommand)GetValue(SignInCommandProperty);
+            set => SetValue(SignInCommandProperty, value);
+        }
+
         public SignInView()
         {
             InitializeComponent();
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            if (SignInCommand != null)
+            {
+                var password = pbPassword.Password;
+                SignInCommand.Execute(password);
+            }
         }
     }
 }

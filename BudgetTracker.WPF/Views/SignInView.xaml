@@ -6,7 +6,56 @@
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Sign in"></TextBlock>
+    <Grid Background="{StaticResource BrushSecondaryPane}">
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
+            <Style TargetType="PasswordBox" BasedOn="{StaticResource FormInput}" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock 
+            Grid.Row="1" 
+            Grid.Column="1" 
+            Text="Budget Tracker"
+            HorizontalAlignment="Center"
+            Style="{StaticResource H1}" />
+
+        <TextBox 
+            Grid.Row="2" 
+            Grid.Column="1"
+            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+        <PasswordBox 
+            Grid.Row="3" 
+            Grid.Column="1"
+            x:Name="pbPassword" />
+
+        <Button 
+            Grid.Row="4" 
+            Grid.Column="1" 
+            Style="{StaticResource ButtonPrimary}"
+            HorizontalAlignment="Center" 
+            Content="Sign in"
+            Click="Login_Click"
+            IsDefault="True"/>
+
+        <Button 
+            Grid.Row="5" 
+            Grid.Column="1" 
+            HorizontalAlignment="Center" 
+            Style="{StaticResource LinkButton}"
+            Content="Don't have an account? Register here!"/>
     </Grid>
 </UserControl>

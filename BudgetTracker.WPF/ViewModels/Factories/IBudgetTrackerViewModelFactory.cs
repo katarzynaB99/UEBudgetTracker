@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BudgetTracker.WPF.State.Navigators;
 
 namespace BudgetTracker.WPF.ViewModels.Factories
 {
-    public interface IBudgetTrackerViewModelFactory<T> where T : ViewModelBase
+    public interface IBudgetTrackerViewModelFactory
     {
-        T CreateViewModel();
+        ViewModelBase CreateViewModel(ViewType viewType);
     }
 }

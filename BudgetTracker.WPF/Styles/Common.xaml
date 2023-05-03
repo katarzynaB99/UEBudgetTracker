@@ -48,4 +48,38 @@
     <SolidColorBrush x:Key="BrushTag" Color="{StaticResource Blue}" />
     <SolidColorBrush x:Key="BrushCursor" Color="{StaticResource Rosewater}" />
     <SolidColorBrush x:Key="BrushDarkText" Color="{StaticResource Crust}" />
+
+    <!-- Headings -->
+    <Style x:Key="H1" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="{StaticResource BrushMainHeadline}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="0 5" />
+    </Style>
+
+    <!-- Form controls -->
+    <Style x:Key="FormInput" TargetType="Control">
+        <Setter Property="Background" Value="{StaticResource BrushSurfaceElement}" />
+        <Setter Property="Foreground" Value="{StaticResource BrushBodyCopy}" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Padding" Value="10 5" />
+        <Setter Property="Margin" Value="0 10" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+
+    <!-- Buttons -->
+    <Style x:Key="ButtonPrimary" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource BrushPrimaryPane}" />
+        <Setter Property="Foreground" Value="{StaticResource BrushDarkText}" />
+        <Setter Property="Padding" Value="10 5" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Margin" Value="10" />
+    </Style>
+
+    <Style x:Key="LinkButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource BrushLink}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="10"></Setter>
+    </Style>
 </ResourceDictionary>

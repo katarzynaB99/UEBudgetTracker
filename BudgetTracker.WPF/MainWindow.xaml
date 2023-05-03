@@ -12,7 +12,22 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <controls:NavigationBar Grid.Column="0" DataContext="{Binding Navigator}"></controls:NavigationBar>
-        <ContentControl Grid.Column="1" Content="{Binding Navigator.CurrentViewModel}"/>
+
+        <Grid Grid.Column="0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Authenticator.IsLoggedIn}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <controls:NavigationBar />
+        </Grid>
+
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ContentControl Grid.Column="1" Content="{Binding Navigator.CurrentViewModel}"/>
+        </ScrollViewer>
     </Grid>
 </Window>

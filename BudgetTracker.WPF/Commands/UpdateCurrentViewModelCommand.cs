@@ -13,10 +13,9 @@ namespace BudgetTracker.WPF.Commands
         public event EventHandler CanExecuteChanged;
 
         private readonly INavigator _navigator;
-        private readonly IBudgetTrackerViewModelAbstractFactory _viewModelFactory;
+        private readonly IBudgetTrackerViewModelFactory _viewModelFactory;
 
-        public UpdateCurrentViewModelCommand(INavigator navigator,
-            IBudgetTrackerViewModelAbstractFactory viewModelFactory)
+        public UpdateCurrentViewModelCommand(INavigator navigator, IBudgetTrackerViewModelFactory viewModelFactory)
         {
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;

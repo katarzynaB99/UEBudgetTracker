@@ -53,8 +53,9 @@ namespace BudgetTracker.Domain.Services.AuthenticationServices
 
         public async Task<User> Login(string username, string password)
         {
-            User storedUser = await _userService.GetByUsername(username);
+            var storedUser = await _userService.GetByUsername(username);
 
+            if (storedUser == null) return storedUser;
             var passwordsMatch =
                 _passwordHasher.VerifyHashedPassword(storedUser.Password, password);
 

@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetTracker.WPF.Controls"
              xmlns:nav="clr-namespace:BudgetTracker.WPF.State.Navigators"
+             xmlns:vm="clr-namespace:BudgetTracker.WPF.ViewModels"
+             xmlns:converters="clr-namespace:BudgetTracker.WPF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
+    </UserControl.Resources>
     <Grid Background="{StaticResource BrushBackgroundPane}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -16,7 +21,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Text="BT" Foreground="White" Padding="10" Background="{StaticResource BrushBackgroundPane}" FontWeight="Black"></TextBlock>
+        <TextBlock Grid.Row="0" Text="Budget Tracker" Foreground="White" Padding="10" Background="{StaticResource BrushBackgroundPane}" FontWeight="Black"></TextBlock>
         <Grid Grid.Row="1">
             <Grid.Resources>
                 <Style TargetType="RadioButton" BasedOn="{StaticResource NavButton}"></Style>
@@ -32,13 +37,50 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <RadioButton Grid.Row="0" Content="Das" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Dashboard}" />
-            <RadioButton Grid.Row="1" Content="Acc" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Accounts}"  />
-            <RadioButton Grid.Row="2" Content="Tra" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Transactions}"  />
-            <RadioButton Grid.Row="3" Content="Bil" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Bills}" />
-            <RadioButton Grid.Row="4" Content="Sta" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Analytics}" />
-            <RadioButton Grid.Row="5" Content="Cat" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Categories}" />
-            <Button Grid.Row="7" Content="Out" Background="{StaticResource BrushBackgroundPane}" Foreground="White" Padding="10"></Button>
+            <RadioButton 
+                Grid.Row="0" 
+                Content="Dashboard"
+                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:DashboardViewModel}}"
+                Command="{Binding UpdateCurrentViewModelCommand}" 
+                CommandParameter="{x:Static nav:ViewType.Dashboard}">
+            </RadioButton>
+            <RadioButton 
+                Grid.Row="1" 
+                Content="Accounts" 
+                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:AccountsViewModel}}"
+                Command="{Binding UpdateCurrentViewModelCommand}" 
+                CommandParameter="{x:Static nav:ViewType.Accounts}"  />
+            <RadioButton 
+                Grid.Row="2" 
+                Content="Transactions" 
+                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:TransactionsViewModel}}"
+                Command="{Binding UpdateCurrentViewModelCommand}" 
+                CommandParameter="{x:Static nav:ViewType.Transactions}"  />
+            <RadioButton 
+                Grid.Row="3" 
+                Content="Bills" 
+                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:BillsViewModel}}"
+                Command="{Binding UpdateCurrentViewModelCommand}" 
+                CommandParameter="{x:Static nav:ViewType.Bills}" />
+            <RadioButton 
+                Grid.Row="4" 
+                Content="Analytics" 
+                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:AnalyticsViewModel}}"
+                Command="{Binding UpdateCurrentViewModelCommand}" 
+                CommandParameter="{x:Static nav:ViewType.Analytics}" />
+            <RadioButton 
+                Grid.Row="5" 
+                Content="Categories" 
+                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:CategoriesViewModel}}"
+                Command="{Binding UpdateCurrentViewModelCommand}" 
+                CommandParameter="{x:Static nav:ViewType.Categories}" />
+            <Button 
+                Grid.Row="7" 
+                Content="Sign out" 
+                Background="{StaticResource BrushBackgroundPane}" 
+                Foreground="White" 
+                BorderBrush="Transparent"
+                Padding="10" />
         </Grid>
     </Grid>
 </UserControl>

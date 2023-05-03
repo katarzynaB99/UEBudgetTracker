@@ -9,7 +9,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
                     <Grid x:Name="gridMain" Background="{TemplateBinding Background}">
-                        <TextBlock x:Name="gridText" Text="{TemplateBinding Content}" 
+                        <TextBlock x:Name="gridText" 
+                                   Text="{TemplateBinding Content}" 
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                    Padding="{TemplateBinding Padding}"
                                    Foreground="{TemplateBinding Foreground}"/>

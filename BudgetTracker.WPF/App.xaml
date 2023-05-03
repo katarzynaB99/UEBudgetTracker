@@ -32,7 +32,7 @@
              </DataTemplate>
 
              <DataTemplate DataType="{x:Type viewmodels:SignInViewModel}">
-                 <views:SignInView />
+                 <views:SignInView SignInCommand="{Binding SignInCommand}" />
              </DataTemplate>
 
              <DataTemplate DataType="{x:Type viewmodels:SignUpViewModel}">
