@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:components="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM"
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -13,6 +14,7 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -37,25 +39,32 @@
             Grid.Row="2" 
             Grid.Column="1"
             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
-        <PasswordBox 
+        <components:BindablePasswordBox 
             Grid.Row="3" 
             Grid.Column="1"
-            x:Name="pbPassword" />
+            Password="{Binding Password}" />
 
-        <Button 
-            Grid.Row="4" 
-            Grid.Column="1" 
-            Style="{StaticResource ButtonPrimary}"
-            HorizontalAlignment="Center" 
-            Content="Sign in"
-            Click="Login_Click"
-            IsDefault="True"/>
+        <TextBlock 
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+            Foreground="{StaticResource BrushError}"/>
 
         <Button 
             Grid.Row="5" 
             Grid.Column="1" 
+            Style="{StaticResource ButtonPrimary}"
+            HorizontalAlignment="Center" 
+            Content="Sign in"
+            Command="{Binding SignInCommand}"
+            IsDefault="True"/>
+
+        <Button 
+            Grid.Row="6" 
+            Grid.Column="1" 
             HorizontalAlignment="Center" 
             Style="{StaticResource LinkButton}"
-            Content="Don't have an account? Register here!"/>
+            Content="Don't have an account? Register here!"
+            Command="{Binding ViewRegisterCommand}"/>
     </Grid>
 </UserControl>

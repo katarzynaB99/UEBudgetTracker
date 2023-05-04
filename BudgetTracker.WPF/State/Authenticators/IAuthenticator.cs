@@ -13,7 +13,7 @@ namespace BudgetTracker.WPF.State.Authenticators
         bool IsLoggedIn { get; }
 
         Task<RegistrationResult> Register(string username, string password, string confirmPassword);
-        Task<bool> Login(string username, string password);
+        Task Login(string username, string password);
         void SignOut();
         event Action StateChanged;
     }

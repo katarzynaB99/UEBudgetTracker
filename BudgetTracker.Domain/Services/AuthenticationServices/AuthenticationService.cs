@@ -55,7 +55,7 @@ namespace BudgetTracker.Domain.Services.AuthenticationServices
         {
             var storedUser = await _userService.GetByUsername(username);
 
-            if (storedUser == null) return storedUser;
+            if (storedUser == null) throw new UserNotFoundException(username, password);
             var passwordsMatch =
                 _passwordHasher.VerifyHashedPassword(storedUser.Password, password);
 

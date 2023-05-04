@@ -65,7 +65,11 @@ namespace BudgetTracker.EntityFramework.Services
         public async Task<User> GetByUsername(string username)
         {
             await using var context = _contextFactory.CreateDbContext();
-            return await context.Users.FirstOrDefaultAsync(e => e.Username == username);
+            return await context.Users
+                .Include(e => e.Accounts)
+                .Include(e => e.Categories)
+                .Include(e => e.Bills)
+                .FirstOrDefaultAsync(e => e.Username == username);
         }
     }
 }
