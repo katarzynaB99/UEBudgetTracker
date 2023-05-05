@@ -17,6 +17,7 @@ namespace BudgetTracker.WPF.State.Users
         private readonly IDataService<Category> _categoryDataService;
 
         private User _currentUser;
+        private IEnumerable<Transaction> _userTransactions;
 
         public User CurrentUser
         {
@@ -24,6 +25,16 @@ namespace BudgetTracker.WPF.State.Users
             set
             {
                 _currentUser = value;
+                StateChanged?.Invoke();
+            }
+        }
+
+        public IEnumerable<Transaction> UserTransactions
+        {
+            get => _userTransactions;
+            set
+            {
+                _userTransactions = value;
                 StateChanged?.Invoke();
             }
         }
@@ -102,6 +113,15 @@ namespace BudgetTracker.WPF.State.Users
             CurrentUser.Accounts = accounts;
             StateChanged?.Invoke();
             await _accountDataService.Delete(account.Id);
+        }
+
+        public async Task FetchUserTransactions()
+        {
+            if (CurrentUser != null)
+            {
+                UserTransactions = await _transactionService.GetTransactionsByUser(CurrentUser.Id);
+                StateChanged?.Invoke();
+            }
         }
 
         public UserStore(IUserService userDataService,

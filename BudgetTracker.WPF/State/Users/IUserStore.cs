@@ -9,6 +9,7 @@ namespace BudgetTracker.WPF.State.Users
     public interface IUserStore
     {
         User CurrentUser { get; set; }
+        IEnumerable<Transaction> UserTransactions { get; set; }
         event Action StateChanged;
 
         Task<Account> CreateAccount(string name, double balance);
@@ -19,6 +20,8 @@ namespace BudgetTracker.WPF.State.Users
             Category category, Account account);
 
         Task RemoveAccount(Account account);
+
+        Task FetchUserTransactions();
 
         /*Account UpdateAccount(Account account);
         Bill UpdateBill*/

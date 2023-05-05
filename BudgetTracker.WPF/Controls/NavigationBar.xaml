@@ -32,7 +32,6 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
@@ -49,12 +48,12 @@
                 IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:TransactionsViewModel}}"
                 Command="{Binding UpdateCurrentViewModelCommand}" 
                 CommandParameter="{x:Static nav:ViewType.Transactions}"  />
-            <RadioButton 
+            <!--<RadioButton 
                 Grid.Row="3" 
                 Content="Bills" 
                 IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:BillsViewModel}}"
                 Command="{Binding UpdateCurrentViewModelCommand}" 
-                CommandParameter="{x:Static nav:ViewType.Bills}" />
+                CommandParameter="{x:Static nav:ViewType.Bills}" />-->
             <RadioButton 
                 Grid.Row="5" 
                 Content="Categories" 

@@ -3,14 +3,16 @@ using System;
 using BudgetTracker.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BudgetTracker.EntityFramework.Migrations
 {
     [DbContext(typeof(BudgetTrackerDbContext))]
-    partial class BudgetTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505230840_remove-transaction-types")]
+    partial class removetransactiontypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

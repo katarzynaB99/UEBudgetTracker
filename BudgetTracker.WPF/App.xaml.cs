@@ -100,7 +100,10 @@ namespace BudgetTracker.WPF
             });
             services.AddSingleton<CreateViewModel<SignUpViewModel>>(services =>
             {
-                return () => services.GetRequiredService<SignUpViewModel>();
+                return () => new SignUpViewModel(
+                    services.GetRequiredService<IAuthenticator>(),
+                    services.GetRequiredService<ViewModelFactoryRenavigator<SignInViewModel>>(),
+                    services.GetRequiredService<ViewModelFactoryRenavigator<SignUpViewModel>>());
             });
             services.AddSingleton<CreateViewModel<TransactionsViewModel>>(services =>
             {

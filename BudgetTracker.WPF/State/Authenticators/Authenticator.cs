@@ -41,6 +41,10 @@ namespace BudgetTracker.WPF.State.Authenticators
         public async Task Login(string username, string password)
         {
             CurrentUser = await _authenticationService.Login(username, password);
+            if (CurrentUser != null)
+            {
+                await _userStore.FetchUserTransactions();
+            }
         }
 
         public void SignOut()

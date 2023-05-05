@@ -44,7 +44,8 @@ namespace BudgetTracker.WPF.ViewModels
                 _errorMessage = value;
                 OnPropertyChanged(ErrorMessage);
                 OnPropertyChanged(nameof(CanSignIn));
-            } }
+            }
+        }
 
         public bool CanSignIn => !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
 

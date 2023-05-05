@@ -36,10 +36,7 @@ namespace BudgetTracker.WPF.ViewModels
             _userStore = userStore;
             _transactionService = transactionService;
             ViewCreateTransactionFormCommand = new RenavigateCommand(createTransactionRenavigator);
-            Transactions = new ObservableCollection<Transaction>(_transactionService
-                .GetTransactionsByUser(_userStore.CurrentUser.Id)
-                .GetAwaiter()
-                .GetResult());
+            Transactions = new ObservableCollection<Transaction>(_userStore.UserTransactions);
         }
     }
 }
