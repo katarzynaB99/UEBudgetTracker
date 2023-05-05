@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BudgetTracker.WPF.ViewModels
 {
-    public class AnalyticsViewModel : ViewModelBase
+    public class CreateTransactionFormViewModel : ViewModelBase
     {
     }
 }

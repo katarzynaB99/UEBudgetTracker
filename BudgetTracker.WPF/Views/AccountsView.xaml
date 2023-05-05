@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Accounts" Style="{StaticResource H1}" />
-            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add account" />
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Command="{Binding ViewCreateAccountFormCommand}" Content="Add account" />
         </Grid>
 
         <ListView Grid.Row="1" BorderBrush="Transparent" ItemsSource="{Binding Accounts}">

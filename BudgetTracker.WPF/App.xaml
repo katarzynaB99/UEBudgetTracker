@@ -15,20 +15,12 @@
                  <views:AccountsView />
              </DataTemplate>
 
-             <DataTemplate DataType="{x:Type viewmodels:AnalyticsViewModel}">
-                 <views:AnalyticsView />
-             </DataTemplate>
-
              <DataTemplate DataType="{x:Type viewmodels:BillsViewModel}">
                  <views:BillsView />
              </DataTemplate>
 
              <DataTemplate DataType="{x:Type viewmodels:CategoriesViewModel}">
                  <views:CategoriesView />
-             </DataTemplate>
-
-             <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
-                 <views:DashboardView />
              </DataTemplate>
 
              <DataTemplate DataType="{x:Type viewmodels:SignInViewModel}">
@@ -42,6 +34,39 @@
              <DataTemplate DataType="{x:Type viewmodels:TransactionsViewModel}">
                  <views:TransactionsView />
              </DataTemplate>
-         </ResourceDictionary>
+
+
+             <DataTemplate DataType="{x:Type viewmodels:CreateAccountFormViewModel}">
+                 <views:CreateAccountFormView />
+             </DataTemplate>
+
+             <DataTemplate DataType="{x:Type viewmodels:CreateBillFormViewModel}">
+                 <views:CreateBillFormView />
+             </DataTemplate>
+
+             <DataTemplate DataType="{x:Type viewmodels:CreateCategoryFormViewModel}">
+                 <views:CreateCategoryFormView />
+             </DataTemplate>
+
+             <DataTemplate DataType="{x:Type viewmodels:CreateTransactionFormViewModel}">
+                 <views:CreateTransactionFormView />
+             </DataTemplate>
+
+             <DataTemplate DataType="{x:Type viewmodels:UpdateAccountFormViewModel}">
+                 <views:UpdateAccountFormView />
+             </DataTemplate>
+
+             <DataTemplate DataType="{x:Type viewmodels:UpdateBillFormViewModel}">
+                 <views:UpdateBillFormView />
+             </DataTemplate>
+
+             <DataTemplate DataType="{x:Type viewmodels:UpdateCategoryFormViewModel}">
+                 <views:UpdateCategoryFormView />
+             </DataTemplate>
+
+             <DataTemplate DataType="{x:Type viewmodels:UpdateTransactionFormViewModel}">
+                 <views:UpdateTransactionFormView/>
+             </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

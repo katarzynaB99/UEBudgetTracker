@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BudgetTracker.Domain\BudgetTracker.Domain.csproj" />
     <ProjectReference Include="..\BudgetTracker.EntityFramework\BudgetTracker.EntityFramework.csproj" />
   </ItemGroup>
 

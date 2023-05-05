@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace BudgetTracker.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for DashboardView.xaml
+    /// Interaction logic for CreateAccountFormView.xaml
     /// </summary>
-    public partial class DashboardView : UserControl
+    public partial class CreateAccountFormView : UserControl
     {
-        public DashboardView()
+        public CreateAccountFormView()
         {
             InitializeComponent();
         }

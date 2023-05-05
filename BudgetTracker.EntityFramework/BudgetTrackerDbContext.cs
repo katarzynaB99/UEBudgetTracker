@@ -30,7 +30,8 @@ namespace BudgetTracker.EntityFramework
                 account.Property(e => e.Name).IsRequired();
 
                 account.HasOne(e => e.User)
-                    .WithMany(e => e.Accounts);
+                    .WithMany(e => e.Accounts)
+                    .HasForeignKey(e => e.UserId);
             });
 
             modelBuilder.Entity<Bill>(bill =>

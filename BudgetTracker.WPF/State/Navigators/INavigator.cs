@@ -9,10 +9,8 @@ namespace BudgetTracker.WPF.State.Navigators
     public enum ViewType
     {
         Accounts,
-        Analytics,
         Bills,
         Categories,
-        Dashboard,
         SignIn,
         SignUp,
         Transactions,

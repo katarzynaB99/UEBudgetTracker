@@ -38,13 +38,6 @@
             </Grid.RowDefinitions>
 
             <RadioButton 
-                Grid.Row="0" 
-                Content="Dashboard"
-                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:DashboardViewModel}}"
-                Command="{Binding UpdateCurrentViewModelCommand}" 
-                CommandParameter="{x:Static nav:ViewType.Dashboard}">
-            </RadioButton>
-            <RadioButton 
                 Grid.Row="1" 
                 Content="Accounts" 
                 IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:AccountsViewModel}}"
@@ -62,12 +55,6 @@
                 IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:BillsViewModel}}"
                 Command="{Binding UpdateCurrentViewModelCommand}" 
                 CommandParameter="{x:Static nav:ViewType.Bills}" />
-            <RadioButton 
-                Grid.Row="4" 
-                Content="Analytics" 
-                IsChecked="{Binding Navigator.CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type vm:AnalyticsViewModel}}"
-                Command="{Binding UpdateCurrentViewModelCommand}" 
-                CommandParameter="{x:Static nav:ViewType.Analytics}" />
             <RadioButton 
                 Grid.Row="5" 
                 Content="Categories" 
