@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Input;
 using BudgetTracker.Domain.Models;
 using BudgetTracker.WPF.Commands;
+using BudgetTracker.WPF.Commands.Remove;
 using BudgetTracker.WPF.State.Assets;
 using BudgetTracker.WPF.State.Navigators;
 using BudgetTracker.WPF.State.Users;
@@ -28,20 +29,15 @@ namespace BudgetTracker.WPF.ViewModels
         }
 
         public ICommand ViewCreateAccountFormCommand { get; }
+        public ICommand RemoveAccountCommand { get; }
 
         public AccountsViewModel(IUserStore userStore, IRenavigator createAccountRenavigator)
         {
             _userStore = userStore;
-            _userStore.StateChanged += UserStore_StateChanged;
             ViewCreateAccountFormCommand = new RenavigateCommand(createAccountRenavigator);
+            RemoveAccountCommand = new RemoveAccountCommand(userStore);
             // Initialize the Accounts collection with the user's accounts
             Accounts = new ObservableCollection<Account>(_userStore.CurrentUser.Accounts);
-        }
-
-        private void UserStore_StateChanged()
-        {
-            var old = _accounts;
-            var nestate = _userStore.CurrentUser.Accounts;
         }
     }
 }

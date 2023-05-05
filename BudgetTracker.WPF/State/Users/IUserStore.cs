@@ -18,6 +18,8 @@ namespace BudgetTracker.WPF.State.Users
         Task<Transaction> CreateTransaction(string name, double amount, DateTime transactionDate,
             Category category);
 
+        Task RemoveAccount(Account account);
+
         /*Account UpdateAccount(Account account);
         Bill UpdateBill*/
     }

@@ -62,6 +62,15 @@ namespace BudgetTracker.WPF.State.Users
             throw new NotImplementedException();
         }
 
+        public async Task RemoveAccount(Account account)
+        {
+            var accounts = CurrentUser.Accounts.ToList();
+            accounts.Remove(account);
+            CurrentUser.Accounts = accounts;
+            StateChanged?.Invoke();
+            await _accountDataService.Delete(account.Id);
+        }
+
         public UserStore(IUserService userDataService,
             IDataService<Account> accountDataService,
             IBillService billDataService,

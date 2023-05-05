@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -21,35 +21,30 @@
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Command="{Binding ViewCreateAccountFormCommand}" Content="Add account" />
         </Grid>
 
-        <ListView Grid.Row="1" BorderBrush="Transparent" ItemsSource="{Binding Accounts}">
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="GridViewColumnHeader">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="GridViewColumnHeader">
-                                        <Border BorderBrush="Gray" BorderThickness="0 0 0 1" Padding="0 5 50 5">
-                                            <TextBlock Text="{TemplateBinding Content}"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
-
-                    <GridViewColumn Header="Account name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Account balance" DisplayMemberBinding="{Binding Balance}" />
-                </GridView>
-            </ListView.View>
+        <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Accounts}">
             <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Focusable" Value="False"/>
-                    <Setter Property="IsHitTestVisible" Value="False"/>
-                    <Setter Property="Margin" Value="0 10"/>
-                    <Setter Property="Foreground" Value="Black"/>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Balance}" />
+                        <Border Grid.Column="2">
+                            <Button Content="Remove"
+                                    Command="{Binding ElementName=listView, Path=DataContext.RemoveAccountCommand}"
+                                    CommandParameter="{Binding}" />
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </UserControl>
