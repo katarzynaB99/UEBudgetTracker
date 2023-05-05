@@ -17,7 +17,6 @@ namespace BudgetTracker.WPF.ViewModels
         private double _balance;
 
         // UI messages
-        private string _formTitle;
         private string _nameErrorMessage;
         private string _balanceErrorMessage;
         private string _errorMessage;
@@ -39,16 +38,6 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _balance = value;
                 OnPropertyChanged(nameof(Balance));
-            }
-        }
-
-        public string FormTitle
-        {
-            get => _formTitle;
-            set
-            {
-                _formTitle = value;
-                OnPropertyChanged(nameof(FormTitle));
             }
         }
 

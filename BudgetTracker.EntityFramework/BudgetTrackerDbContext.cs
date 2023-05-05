@@ -42,9 +42,11 @@ namespace BudgetTracker.EntityFramework
                 bill.Property(e => e.Name).IsRequired();
 
                 bill.HasOne(e => e.Category)
-                    .WithMany(e => e.Bills);
+                    .WithMany(e => e.Bills)
+                    .HasForeignKey(e => e.CategoryId);
                 bill.HasOne(e => e.User)
-                    .WithMany(e => e.Bills);
+                    .WithMany(e => e.Bills)
+                    .HasForeignKey(e => e.UserId);
             });
             
             modelBuilder.Entity<Category>(category =>
@@ -54,9 +56,11 @@ namespace BudgetTracker.EntityFramework
                 category.Property(e => e.Name).IsRequired();
 
                 category.HasOne(e => e.TransactionType)
-                    .WithMany(e => e.Categories);
+                    .WithMany(e => e.Categories)
+                    .HasForeignKey(e => e.TransactionTypeId);
                 category.HasOne(e => e.User)
-                    .WithMany(e => e.Categories);
+                    .WithMany(e => e.Categories)
+                    .HasForeignKey(e => e.UserId);
             });
             
             modelBuilder.Entity<Transaction>(transaction =>
@@ -66,11 +70,14 @@ namespace BudgetTracker.EntityFramework
                 transaction.Property(e => e.TransactionDate).IsRequired();
 
                 transaction.HasOne(e => e.Account)
-                    .WithMany(e => e.Transactions);
+                    .WithMany(e => e.Transactions)
+                    .HasForeignKey(e => e.AccountId);
                 transaction.HasOne(e => e.Category)
-                    .WithMany(e => e.Transactions);
+                    .WithMany(e => e.Transactions)
+                    .HasForeignKey(e => e.CategoryId);
                 transaction.HasOne(e => e.TransactionType)
-                    .WithMany(e => e.Transactions);
+                    .WithMany(e => e.Transactions)
+                    .HasForeignKey(e => e.TransactionTypeId);
             });
             
             modelBuilder.Entity<TransactionType>(transactionType =>

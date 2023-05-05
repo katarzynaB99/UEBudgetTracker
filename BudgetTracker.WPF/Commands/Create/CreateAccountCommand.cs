@@ -33,9 +33,16 @@ namespace BudgetTracker.WPF.Commands.Create
         public override async Task ExecuteAsync(object parameter)
         {
             _createAccountFormViewModel.ErrorMessage = string.Empty;
-            var account = await _userStore.CreateAccount(_createAccountFormViewModel.Name,
+            try
+            {
+                await _userStore.CreateAccount(_createAccountFormViewModel.Name,
                     _createAccountFormViewModel.Balance);
-            _renavigator.Renavigate();
+                _renavigator.Renavigate();
+            }
+            catch (Exception)
+            {
+                _createAccountFormViewModel.ErrorMessage = "Failed to create account.";
+            }
         }
 
         private void CreateAccountFormViewModel_PropertyChanged(object sender,
