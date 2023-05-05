@@ -32,9 +32,16 @@ namespace BudgetTracker.WPF.ViewModels
         public AccountsViewModel(IUserStore userStore, IRenavigator createAccountRenavigator)
         {
             _userStore = userStore;
+            _userStore.StateChanged += UserStore_StateChanged;
             ViewCreateAccountFormCommand = new RenavigateCommand(createAccountRenavigator);
             // Initialize the Accounts collection with the user's accounts
             Accounts = new ObservableCollection<Account>(_userStore.CurrentUser.Accounts);
+        }
+
+        private void UserStore_StateChanged()
+        {
+            var old = _accounts;
+            var nestate = _userStore.CurrentUser.Accounts;
         }
     }
 }

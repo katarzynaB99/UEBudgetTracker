@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -32,9 +33,9 @@ namespace BudgetTracker.WPF.Commands.Create
         public override async Task ExecuteAsync(object parameter)
         {
             _createAccountFormViewModel.ErrorMessage = string.Empty;
-            await _userStore.CreateAccount(_createAccountFormViewModel.Name,
+            var account = await _userStore.CreateAccount(_createAccountFormViewModel.Name,
                     _createAccountFormViewModel.Balance);
-                _renavigator.Renavigate();
+            _renavigator.Renavigate();
         }
 
         private void CreateAccountFormViewModel_PropertyChanged(object sender,

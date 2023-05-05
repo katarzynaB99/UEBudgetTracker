@@ -39,7 +39,10 @@ namespace BudgetTracker.WPF.State.Users
                 UserId = CurrentUser.Id
             };
 
-            CurrentUser.Accounts.Append(newAccount);
+            var accounts = CurrentUser.Accounts.ToList();
+            accounts.Add(newAccount);
+            CurrentUser.Accounts = accounts;
+            StateChanged?.Invoke();
             return await _accountDataService.Create(newAccount);
         }
 
