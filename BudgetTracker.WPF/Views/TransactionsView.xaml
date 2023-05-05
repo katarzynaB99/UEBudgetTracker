@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Transactions" Style="{StaticResource H1}" />
-            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add transaction" />
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add transaction" Command="{Binding ViewCreateTransactionFormCommand}" />
         </Grid>
 
         <ListView Grid.Row="1" BorderBrush="Transparent" ItemsSource="{Binding Transactions}">

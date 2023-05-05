@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Categories" Style="{StaticResource H1}" />
-            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add category" />
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add category" Command="{Binding ViewCreateCategoryFormCommand}" />
         </Grid>
 
         <ListView Grid.Row="1" BorderBrush="Transparent" ItemsSource="{Binding Categories}">

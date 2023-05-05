@@ -80,11 +80,16 @@ namespace BudgetTracker.WPF
             });
             services.AddSingleton<CreateViewModel<BillsViewModel>>(services =>
             {
-                return () => services.GetRequiredService<BillsViewModel>();
+                return () => new BillsViewModel(
+                    services.GetRequiredService<IUserStore>(),
+                    services.GetRequiredService<ViewModelFactoryRenavigator<CreateBillFormViewModel>>());
             });
             services.AddSingleton<CreateViewModel<CategoriesViewModel>>(services =>
             {
-                return () => services.GetRequiredService<CategoriesViewModel>();
+                return () => new CategoriesViewModel(
+                        services.GetRequiredService<IUserStore>(),
+                        services.GetRequiredService<ViewModelFactoryRenavigator<CreateCategoryFormViewModel>>()
+                    );
             });
             services.AddSingleton<CreateViewModel<SignInViewModel>>(services =>
             {
@@ -99,7 +104,10 @@ namespace BudgetTracker.WPF
             });
             services.AddSingleton<CreateViewModel<TransactionsViewModel>>(services =>
             {
-                return () => services.GetRequiredService<TransactionsViewModel>();
+                return () => new TransactionsViewModel(
+                    services.GetRequiredService<IUserStore>(),
+                    services.GetRequiredService<ITransactionService>(),
+                    services.GetRequiredService<ViewModelFactoryRenavigator<CreateTransactionFormViewModel>>());
             });
 
             services.AddSingleton<CreateViewModel<CreateAccountFormViewModel>>(services =>
@@ -110,17 +118,23 @@ namespace BudgetTracker.WPF
             });
             services.AddSingleton<CreateViewModel<CreateBillFormViewModel>>(services =>
             {
-                return () => services.GetRequiredService<CreateBillFormViewModel>();
+                return () => new CreateBillFormViewModel(
+                    services.GetRequiredService<ViewModelFactoryRenavigator<BillsViewModel>>(),
+                    services.GetRequiredService<IUserStore>());
             });
             services.AddSingleton<CreateViewModel<CreateCategoryFormViewModel>>(services =>
             {
-                return () => services.GetRequiredService<CreateCategoryFormViewModel>();
+                return () => new CreateCategoryFormViewModel(
+                    services.GetRequiredService<ViewModelFactoryRenavigator<CategoriesViewModel>>(),
+                    services.GetRequiredService<IUserStore>());
             });
             services.AddSingleton<CreateViewModel<CreateTransactionFormViewModel>>(services =>
             {
-                return () => services.GetRequiredService<CreateTransactionFormViewModel>();
+                return () => new CreateTransactionFormViewModel(
+                    services.GetRequiredService<ViewModelFactoryRenavigator<TransactionsViewModel >>(),
+                    services.GetRequiredService<IUserStore>());
             });
-
+            // TODO: Update views?
             services.AddSingleton<CreateViewModel<UpdateAccountFormViewModel>>(services =>
             {
                 return () => services.GetRequiredService<UpdateAccountFormViewModel>();
