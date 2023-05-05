@@ -4,15 +4,18 @@ using System.Text;
 using System.Threading.Tasks;
 using BudgetTracker.Domain.Models;
 using BudgetTracker.WPF.State.Users;
+using BudgetTracker.WPF.ViewModels;
 
 namespace BudgetTracker.WPF.Commands.Remove
 {
     public class RemoveAccountCommand : AsyncCommandBase
     {
+        private readonly AccountsViewModel _accountsViewModel;
         private readonly IUserStore _userStore;
 
-        public RemoveAccountCommand(IUserStore userStore)
+        public RemoveAccountCommand(AccountsViewModel accountsViewModel, IUserStore userStore)
         {
+            _accountsViewModel = accountsViewModel;
             _userStore = userStore;
         }
 
@@ -20,6 +23,7 @@ namespace BudgetTracker.WPF.Commands.Remove
         {
             var account = (Account)parameter;
             await _userStore.RemoveAccount(account);
+            _accountsViewModel.Accounts.Remove(account);
         }
     }
 }

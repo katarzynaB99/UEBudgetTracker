@@ -21,7 +21,7 @@
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Command="{Binding ViewCreateAccountFormCommand}" Content="Add account" />
         </Grid>
 
-        <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Accounts}">
+        <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Accounts, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

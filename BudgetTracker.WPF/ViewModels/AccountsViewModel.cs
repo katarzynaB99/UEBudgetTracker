@@ -35,7 +35,7 @@ namespace BudgetTracker.WPF.ViewModels
         {
             _userStore = userStore;
             ViewCreateAccountFormCommand = new RenavigateCommand(createAccountRenavigator);
-            RemoveAccountCommand = new RemoveAccountCommand(userStore);
+            RemoveAccountCommand = new RemoveAccountCommand(this, userStore);
             // Initialize the Accounts collection with the user's accounts
             Accounts = new ObservableCollection<Account>(_userStore.CurrentUser.Accounts);
         }
