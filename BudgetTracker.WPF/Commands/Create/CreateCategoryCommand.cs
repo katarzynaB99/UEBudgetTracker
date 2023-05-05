@@ -32,8 +32,7 @@ namespace BudgetTracker.WPF.Commands.Create
             _createCategoryFormViewModel.ErrorMessage = string.Empty;
             try
             {
-                await _userStore.CreateCategory(_createCategoryFormViewModel.Name,
-                    _createCategoryFormViewModel.TransactionType);
+                await _userStore.CreateCategory(_createCategoryFormViewModel.Name);
                 _renavigator.Renavigate();
             }
             catch (Exception)

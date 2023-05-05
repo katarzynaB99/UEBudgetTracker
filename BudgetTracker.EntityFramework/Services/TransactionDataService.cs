@@ -30,18 +30,6 @@ namespace BudgetTracker.EntityFramework.Services
             return entities;
         }
 
-        public async Task<IEnumerable<Transaction>> GetTransactionsByType(int userId, int transactionTypeId)
-        {
-            await using var context = _contextFactory.CreateDbContext();
-            IEnumerable<Transaction> entities = await context.Transactions
-                .Where(e =>
-                    e.Account.User.Id == userId && e.TransactionType.Id == transactionTypeId)
-                .OrderBy(e => e.TransactionDate)
-                .ToListAsync();
-
-            return entities;
-        }
-
         public async Task<IEnumerable<Transaction>> GetTransactionsByCategory(int userId, int categoryId)
         {
             await using var context = _contextFactory.CreateDbContext();

@@ -13,8 +13,8 @@ namespace BudgetTracker.WPF.State.Users
         private readonly IUserService _userDataService;
         private readonly IDataService<Account> _accountDataService;
         private readonly IBillService _billDataService;
-        private readonly IDataService<TransactionType> _transactionTypeDataService;
         private readonly ITransactionService _transactionService;
+        private readonly IDataService<Category> _categoryDataService;
 
         private User _currentUser;
 
@@ -46,20 +46,53 @@ namespace BudgetTracker.WPF.State.Users
             return await _accountDataService.Create(newAccount);
         }
 
-        public async Task<Bill> CreateBill(string name, DateTime dueDate, double amount, bool paid)
+        public async Task<Bill> CreateBill(string name, DateTime dueDate, double amount, bool paid, Category category)
         {
-            throw new NotImplementedException();
+            var newBill = new Bill
+            {
+                Amount = amount,
+                Name = name,
+                DueDate = dueDate,
+                Paid = paid,
+                CategoryId = category.Id,
+                UserId = CurrentUser.Id,
+                CreationDate = DateTime.Now
+            };
+
+            var bills = CurrentUser.Bills.ToList();
+            bills.Add(newBill);
+            CurrentUser.Bills = bills;
+            StateChanged?.Invoke();
+            return await _billDataService.Create(newBill);
         }
 
-        public async Task<Category> CreateCategory(string name, TransactionType type)
+        public async Task<Category> CreateCategory(string name)
         {
-            throw new NotImplementedException();
+            var newCategory = new Category
+            {
+                Name = name,
+                UserId = CurrentUser.Id,
+                CreationDate = DateTime.Now
+            };
+            var categories = CurrentUser.Categories.ToList();
+            categories.Add(newCategory);
+            CurrentUser.Categories = categories;
+            StateChanged?.Invoke();
+            return await _categoryDataService.Create(newCategory);
         }
 
         public async Task<Transaction> CreateTransaction(string name, double amount, DateTime transactionDate,
-            Category category)
+            Category category, Account account)
         {
-            throw new NotImplementedException();
+            var newTransaction = new Transaction
+            {
+                Name = name,
+                TransactionDate = transactionDate,
+                Amount = amount,
+                AccountId = account.Id,
+                CategoryId = category.Id,
+            };
+            return null;
         }
 
         public async Task RemoveAccount(Account account)
@@ -74,14 +107,14 @@ namespace BudgetTracker.WPF.State.Users
         public UserStore(IUserService userDataService,
             IDataService<Account> accountDataService,
             IBillService billDataService,
-            IDataService<TransactionType> transactionTypeDataService,
-            ITransactionService transactionService)
+            ITransactionService transactionService,
+            IDataService<Category> categoryDataService)
         {
             _userDataService = userDataService;
             _accountDataService = accountDataService;
             _billDataService = billDataService;
-            _transactionTypeDataService = transactionTypeDataService;
             _transactionService = transactionService;
+            _categoryDataService = categoryDataService;
         }
     }
 }

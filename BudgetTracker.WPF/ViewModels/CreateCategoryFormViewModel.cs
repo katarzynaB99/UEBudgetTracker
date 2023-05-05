@@ -14,7 +14,6 @@ namespace BudgetTracker.WPF.ViewModels
     {
         // Category properties
         private string _name;
-        private TransactionType _transactionType;
         
         // UI Errors
         private string _nameErrorMessage;
@@ -28,16 +27,6 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
-            }
-        }
-
-        public TransactionType TransactionType
-        {
-            get => _transactionType;
-            set
-            {
-                _transactionType = value;
-                OnPropertyChanged(nameof(TransactionType));
             }
         }
 

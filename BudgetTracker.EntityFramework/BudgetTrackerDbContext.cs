@@ -12,7 +12,6 @@ namespace BudgetTracker.EntityFramework
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<TransactionType> TransactionTypes { get; set; }
         public DbSet<User> Users { get; set; }
 
         public BudgetTrackerDbContext(DbContextOptions options) : base(options)
@@ -55,9 +54,6 @@ namespace BudgetTracker.EntityFramework
                 category.Property(e => e.CreationDate).ValueGeneratedOnAdd();
                 category.Property(e => e.Name).IsRequired();
 
-                category.HasOne(e => e.TransactionType)
-                    .WithMany(e => e.Categories)
-                    .HasForeignKey(e => e.TransactionTypeId);
                 category.HasOne(e => e.User)
                     .WithMany(e => e.Categories)
                     .HasForeignKey(e => e.UserId);
@@ -75,15 +71,6 @@ namespace BudgetTracker.EntityFramework
                 transaction.HasOne(e => e.Category)
                     .WithMany(e => e.Transactions)
                     .HasForeignKey(e => e.CategoryId);
-                transaction.HasOne(e => e.TransactionType)
-                    .WithMany(e => e.Transactions)
-                    .HasForeignKey(e => e.TransactionTypeId);
-            });
-            
-            modelBuilder.Entity<TransactionType>(transactionType =>
-            {
-                transactionType.Property(e => e.Id).ValueGeneratedOnAdd();
-                transactionType.Property(e => e.Name).IsRequired();
             });
             
             modelBuilder.Entity<User>(user =>

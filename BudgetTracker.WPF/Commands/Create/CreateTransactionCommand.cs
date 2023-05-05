@@ -35,7 +35,8 @@ namespace BudgetTracker.WPF.Commands.Create
                 await _userStore.CreateTransaction(_createTransactionFormViewModel.Name,
                     _createTransactionFormViewModel.Amount,
                     _createTransactionFormViewModel.TransactionDate,
-                    _createTransactionFormViewModel.Category);
+                    _createTransactionFormViewModel.Category,
+                    _createTransactionFormViewModel.Account);
                 _renavigator.Renavigate();
             }
             catch (Exception)

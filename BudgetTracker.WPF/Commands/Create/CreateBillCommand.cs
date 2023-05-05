@@ -36,7 +36,8 @@ namespace BudgetTracker.WPF.Commands.Create
                 await _userStore.CreateBill(_createBillFormViewModel.Name,
                     _createBillFormViewModel.DueDate,
                     _createBillFormViewModel.Amount,
-                    _createBillFormViewModel.Paid);
+                    _createBillFormViewModel.Paid,
+                    _createBillFormViewModel.Category);
                 _renavigator.Renavigate();
             }
             catch (Exception)

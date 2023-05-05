@@ -12,9 +12,8 @@ namespace BudgetTracker.Domain.Models
         public DateTime CreationDate { get; set; }
         public int AccountId { get; set; }
         public int CategoryId { get; set; }
-        public int TransactionTypeId { get; set; }
+
         public Category Category { get; set; }
-        public TransactionType TransactionType { get; set; }
         public Account Account { get; set; }
     }
 }

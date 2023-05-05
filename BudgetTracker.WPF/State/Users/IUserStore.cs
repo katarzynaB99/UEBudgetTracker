@@ -12,11 +12,11 @@ namespace BudgetTracker.WPF.State.Users
         event Action StateChanged;
 
         Task<Account> CreateAccount(string name, double balance);
-        Task<Bill> CreateBill(string name, DateTime dueDate, double amount, bool paid);
-        Task<Category> CreateCategory(string name, TransactionType type);
+        Task<Bill> CreateBill(string name, DateTime dueDate, double amount, bool paid, Category category);
+        Task<Category> CreateCategory(string name);
 
         Task<Transaction> CreateTransaction(string name, double amount, DateTime transactionDate,
-            Category category);
+            Category category, Account account);
 
         Task RemoveAccount(Account account);
 
