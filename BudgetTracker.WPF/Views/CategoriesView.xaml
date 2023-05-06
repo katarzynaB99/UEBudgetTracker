@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Categories" Style="{StaticResource H1}" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Categories" Style="{StaticResource H1}" Margin="10 15" />
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add category" Command="{Binding ViewCreateCategoryFormCommand}" />
         </Grid>
 
@@ -29,15 +29,17 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="5 5" Background="{StaticResource BrushSurfaceElement}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="400" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Name}" />
-                        <Border Grid.Column="2">
+                        <TextBlock Grid.Column="0" Margin="10 15" FontWeight="Bold" Foreground="{StaticResource BrushBodyCopy}" Text="{Binding Name}" />
+                        <Border Grid.Column="2" Margin="20 10">
                             <Button Content="Remove"
+                                    Background="{StaticResource BrushError}"
+                                    Padding="10 5"
                                     Command="{Binding ElementName=listView, Path=DataContext.RemoveCategoryCommand}"
                                     CommandParameter="{Binding}" />
                         </Border>

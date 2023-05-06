@@ -177,6 +177,9 @@ namespace BudgetTracker.WPF.ViewModels
         public CreateTransactionFormViewModel(IRenavigator renavigator, IUserStore userStore)
         {
             _userStore = userStore;
+
+            TransactionDate = DateTime.Now;
+
             NameErrorMessage = string.Empty;
             AmountErrorMessage = string.Empty;
             TransactionDateErrorMessage = string.Empty;

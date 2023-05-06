@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
             <Style TargetType="DatePicker" BasedOn="{StaticResource FormInput}" />
-            <Style TargetType="ComboBox" BasedOn="{StaticResource FormInput}" />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -44,9 +44,10 @@
 
         <!-- Transaction amount -->
         <TextBox 
+            x:Name="transactionAmountTextBox"
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock 
             Grid.Row="3" 
             Grid.Column="1"
@@ -66,7 +67,7 @@
         <DatePicker 
             Grid.Row="6"
             Grid.Column="1"
-            Text="{Binding TransactionDate, UpdateSourceTrigger=PropertyChanged}" />
+            SelectedDate="{Binding TransactionDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue={x:Static system:DateTime.Now}}" />
         <TextBlock 
             Grid.Row="7" 
             Grid.Column="1"
@@ -77,7 +78,8 @@
             Grid.Row="8"
             Grid.Column="1" 
             SelectedItem="{Binding Account, UpdateSourceTrigger=PropertyChanged}"
-            ItemsSource="{Binding UserAccounts, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+            ItemsSource="{Binding UserAccounts, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+            DisplayMemberPath="Name"/>
         <TextBlock 
             Grid.Row="9"
             Grid.Column="1"
@@ -88,7 +90,8 @@
             Grid.Row="10"
             Grid.Column="1"
             SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
-            ItemsSource="{Binding UserCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+            ItemsSource="{Binding UserCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+            DisplayMemberPath="Name"/>
         <TextBlock 
             Grid.Row="11"
             Grid.Column="1"
@@ -104,10 +107,10 @@
         <Button
             Grid.Row="13"
             Grid.Column="1"
-            Style="{StaticResource ButtonPrimary}"
             Content="Save"
             HorizontalAlignment="Center"
             Command="{Binding SubmitCommand}"
-            IsDefault="True"/>
+            Style="{StaticResource ButtonPrimary}"
+            IsDefault="True" />
     </Grid>
 </UserControl>

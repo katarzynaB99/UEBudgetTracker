@@ -21,7 +21,7 @@ namespace BudgetTracker.WPF.State.Users
 
         Task RemoveAccount(Account account);
         Task RemoveCategory(Category category);
-
+        Task RemoveTransaction(Transaction transaction);
         Task FetchUserTransactions();
 
         /*Account UpdateAccount(Account account);

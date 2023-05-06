@@ -28,6 +28,9 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
+                if (!string.IsNullOrEmpty(value)) return;
+                NameErrorMessage = "This field is required.";
+                OnPropertyChanged(nameof(NameErrorMessage));
             }
         }
 
@@ -38,6 +41,11 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _balance = value;
                 OnPropertyChanged(nameof(Balance));
+                if (value == null || value.ToString() == "")
+                {
+                    BalanceErrorMessage = "This field is required.";
+                    OnPropertyChanged(nameof(BalanceErrorMessage));
+                }
             }
         }
 

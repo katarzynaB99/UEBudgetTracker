@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -17,41 +17,45 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Transactions" Style="{StaticResource H1}" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Transactions" Style="{StaticResource H1}" Margin="10 15" />
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add transaction" Command="{Binding ViewCreateTransactionFormCommand}" />
         </Grid>
 
-        <ListView Grid.Row="1" BorderBrush="Transparent" ItemsSource="{Binding Transactions}">
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="GridViewColumnHeader">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="GridViewColumnHeader">
-                                        <Border BorderBrush="Gray" BorderThickness="0 0 0 1" Padding="0 5 50 5">
-                                            <TextBlock Text="{TemplateBinding Content}"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
-
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding TransactionDate}" />
-                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category.Name}" />
-                    <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}" />
-                </GridView>
-            </ListView.View>
+        <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Transactions, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Focusable" Value="False"/>
-                    <Setter Property="IsHitTestVisible" Value="False"/>
-                    <Setter Property="Margin" Value="0 10"/>
-                    <Setter Property="Foreground" Value="Black"/>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5 5" Background="{StaticResource BrushSurfaceElement}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{Binding Name}" Margin="5" FontWeight="Bold" Foreground="{StaticResource BrushBodyCopy}" />
+                            <TextBlock Grid.Row="1" Text="{Binding TransactionDate}" Margin="5" Foreground="{StaticResource BrushLabels}" />
+                        </Grid>
+                        <TextBlock Grid.Column="1" Text="{Binding Category.Name}" Margin="10 15" Foreground="{StaticResource BrushBodyCopy}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Amount}" Margin="10 15" Foreground="{StaticResource BrushBodyCopy}" />
+                        <Border Grid.Column="3" Margin="20 10">
+                            <Button Content="Remove"
+                                    Background="{StaticResource BrushError}"
+                                    Padding="10 5"
+                                    Command="{Binding ElementName=listView, Path=DataContext.RemoveTransactionCommand}"
+                                    CommandParameter="{Binding}" />
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </UserControl>

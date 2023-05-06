@@ -102,12 +102,20 @@ namespace BudgetTracker.WPF.State.Users
                 Amount = amount,
                 AccountId = account.Id,
                 CategoryId = category.Id,
+                CreationDate = DateTime.Now
             };
+            var entity = await _transactionService.Create(newTransaction);
             var transactions = UserTransactions.ToList();
-            transactions.Add(newTransaction);
+            transactions.Add(entity);
             UserTransactions = transactions;
+
+            var entityAccount = CurrentUser.Accounts.First(x => x.Id == entity.AccountId);
+            if (entityAccount != null)
+            {
+                entityAccount.Balance = entity.Account.Balance;
+            }
             StateChanged?.Invoke();
-            return await _transactionService.Create(newTransaction);
+            return entity;
         }
 
         public async Task RemoveAccount(Account account)
@@ -126,6 +134,22 @@ namespace BudgetTracker.WPF.State.Users
             CurrentUser.Categories = categories;
             StateChanged?.Invoke();
             await _categoryDataService.Delete(category.Id);
+        }
+
+        public async Task RemoveTransaction(Transaction transaction)
+        {
+            await _transactionService.Delete(transaction.Id);
+            var transactions = UserTransactions.ToList();
+            transactions.Remove(transaction);
+            UserTransactions = transactions;
+
+            var entityAccount = CurrentUser.Accounts.First(x => x.Id == transaction.AccountId);
+            var dbAccount = await _accountDataService.Get(transaction.AccountId);
+            if (entityAccount != null)
+            {
+                entityAccount.Balance = dbAccount.Balance;
+            }
+            StateChanged?.Invoke();
         }
 
         public async Task FetchUserTransactions()

@@ -20,9 +20,14 @@ namespace BudgetTracker.WPF.ViewModels
 
 
         public ICommand UpdateCurrentViewModelCommand { get; }
+        public ICommand SignOutCommand { get; }
+        public ICommand ImportUserDataCommand { get; }
+        public ICommand ExportUserDataCommand { get; }
 
 
-        public MainViewModel(INavigator navigator, IBudgetTrackerViewModelFactory viewModelFactory, IAuthenticator authenticator)
+        public MainViewModel(INavigator navigator, IBudgetTrackerViewModelFactory viewModelFactory,
+            IAuthenticator authenticator,
+            ViewModelFactoryRenavigator<SignInViewModel> signInViewRenavigator)
         {
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
@@ -31,7 +36,9 @@ namespace BudgetTracker.WPF.ViewModels
             _navigator.StateChanged += Navigator_StateChanged;
             _authenticator.StateChanged += Authenticator_StateChanged;
 
-            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
+            SignOutCommand = new SignOutCommand(authenticator, signInViewRenavigator);
+            UpdateCurrentViewModelCommand =
+                new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
             UpdateCurrentViewModelCommand.Execute(ViewType.SignIn);
         }
 

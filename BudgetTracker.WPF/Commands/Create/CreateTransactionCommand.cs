@@ -15,17 +15,20 @@ namespace BudgetTracker.WPF.Commands.Create
         private readonly IRenavigator _renavigator;
         private readonly IUserStore _userStore;
 
-        public CreateTransactionCommand(CreateTransactionFormViewModel createTransactionFormViewModel,
+        public CreateTransactionCommand(
+            CreateTransactionFormViewModel createTransactionFormViewModel,
             IRenavigator renavigator, IUserStore userStore)
         {
             _createTransactionFormViewModel = createTransactionFormViewModel;
             _renavigator = renavigator;
             _userStore = userStore;
 
-            _createTransactionFormViewModel.PropertyChanged += CreateTransactionFormViewModel_PropertyChanged;
+            _createTransactionFormViewModel.PropertyChanged +=
+                CreateTransactionFormViewModel_PropertyChanged;
         }
 
-        public override bool CanExecute(object parameter) => _createTransactionFormViewModel.CanSubmit;
+        public override bool CanExecute(object parameter) =>
+            _createTransactionFormViewModel.CanSubmit;
 
         public override async Task ExecuteAsync(object parameter)
         {
@@ -41,7 +44,7 @@ namespace BudgetTracker.WPF.Commands.Create
             }
             catch (Exception)
             {
-                _createTransactionFormViewModel.ErrorMessage = "Failed to create category.";
+                _createTransactionFormViewModel.ErrorMessage = "Failed to create transaction.";
             }
         }
 

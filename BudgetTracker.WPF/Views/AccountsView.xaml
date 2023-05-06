@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Accounts" Style="{StaticResource H1}" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Accounts" Style="{StaticResource H1}" Margin="10 15"/>
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Command="{Binding ViewCreateAccountFormCommand}" Content="Add account" />
         </Grid>
 
@@ -29,16 +29,18 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="5 5" Background="{StaticResource BrushSurfaceElement}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="400" />
+                            <ColumnDefinition Width="Auto" MaxWidth="400" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Name}" />
-                        <TextBlock Grid.Column="1" Text="{Binding Balance}" />
-                        <Border Grid.Column="2">
+                        <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="{StaticResource BrushBodyCopy}"  FontWeight="Bold" Margin="20 15" />
+                        <TextBlock Grid.Column="1" Text="{Binding Balance}" Foreground="{StaticResource BrushBodyCopy}"  Margin="20 15"  />
+                        <Border Grid.Column="2" Margin="20 10" >
                             <Button Content="Remove"
+                                    Background="{StaticResource BrushError}"
+                                    Padding="10 5"
                                     Command="{Binding ElementName=listView, Path=DataContext.RemoveAccountCommand}"
                                     CommandParameter="{Binding}" />
                         </Border>

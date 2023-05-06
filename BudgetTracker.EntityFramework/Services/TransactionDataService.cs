@@ -64,6 +64,7 @@ namespace BudgetTracker.EntityFramework.Services
         {
             await using var context = _contextFactory.CreateDbContext();
             IDataService<Account> accountService = new GenericDataService<Account>(_contextFactory);
+            IDataService<Category> categoryService = new GenericDataService<Category>(_contextFactory);
 
             // Update account balance
             var accountToUpdate = await accountService.Get(entity.AccountId);
@@ -71,7 +72,11 @@ namespace BudgetTracker.EntityFramework.Services
             await accountService.Update(entity.AccountId, accountToUpdate);
 
             // Proceed with creating as usual
-            return await base.Create(entity);
+            var createdEntity = await base.Create(entity);
+
+            createdEntity.Account = accountToUpdate;
+            createdEntity.Category = await categoryService.Get(createdEntity.CategoryId);
+            return createdEntity;
         }
 
         public override async Task<Transaction> Update(int id, Transaction entity)
@@ -110,8 +115,9 @@ namespace BudgetTracker.EntityFramework.Services
 
             // Update account balance before deleting
             var transaction = await Get(id);
-            transaction.Account.Balance -= transaction.Amount;
-            await accountService.Update(transaction.Account.Id, transaction.Account);
+            var accountToUpdate = await accountService.Get(transaction.AccountId);
+            accountToUpdate.Balance -= transaction.Amount;
+            await accountService.Update(transaction.AccountId, accountToUpdate);
 
             // Proceed with deleting as usual
             return await base.Delete(id);

@@ -8,6 +8,7 @@ using BudgetTracker.Domain.Models;
 using BudgetTracker.Domain.Services;
 using BudgetTracker.EntityFramework.Services;
 using BudgetTracker.WPF.Commands;
+using BudgetTracker.WPF.Commands.Remove;
 using BudgetTracker.WPF.State.Navigators;
 using BudgetTracker.WPF.State.Users;
 
@@ -30,12 +31,14 @@ namespace BudgetTracker.WPF.ViewModels
         }
 
         public ICommand ViewCreateTransactionFormCommand { get; }
+        public ICommand RemoveTransactionCommand { get; }
 
         public TransactionsViewModel(IUserStore userStore, ITransactionService transactionService, IRenavigator createTransactionRenavigator)
         {
             _userStore = userStore;
             _transactionService = transactionService;
             ViewCreateTransactionFormCommand = new RenavigateCommand(createTransactionRenavigator);
+            RemoveTransactionCommand = new RemoveTransactionCommand(this, userStore);
             Transactions = new ObservableCollection<Transaction>(_userStore.UserTransactions);
         }
     }
