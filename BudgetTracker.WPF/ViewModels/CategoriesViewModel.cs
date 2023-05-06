@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using BudgetTracker.Domain.Models;
 using BudgetTracker.WPF.Commands;
+using BudgetTracker.WPF.Commands.Remove;
 using BudgetTracker.WPF.State.Navigators;
 using BudgetTracker.WPF.State.Users;
 
@@ -26,11 +27,13 @@ namespace BudgetTracker.WPF.ViewModels
         }
 
         public ICommand ViewCreateCategoryFormCommand { get; }
+        public ICommand RemoveCategoryCommand { get; }
 
         public CategoriesViewModel(IUserStore userStore, IRenavigator createCategoryRenavigator)
         {
             _userStore = userStore;
             ViewCreateCategoryFormCommand = new RenavigateCommand(createCategoryRenavigator);
+            RemoveCategoryCommand = new RemoveCategoryCommand(this, userStore);
             Categories = new ObservableCollection<Category>(_userStore.CurrentUser.Categories);
         }
     }

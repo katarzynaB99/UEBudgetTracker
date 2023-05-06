@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using BudgetTracker.Domain.Models;
 using BudgetTracker.WPF.Commands.Create;
+using BudgetTracker.WPF.Commands.Remove;
 using BudgetTracker.WPF.State.Navigators;
 using BudgetTracker.WPF.State.Users;
 
@@ -17,7 +18,6 @@ namespace BudgetTracker.WPF.ViewModels
         
         // UI Errors
         private string _nameErrorMessage;
-        private string _transactionTypeMessage;
         private string _errorMessage;
 
         public string Name
@@ -40,16 +40,6 @@ namespace BudgetTracker.WPF.ViewModels
             }
         }
 
-        public string TransactionTypeErrorMessage
-        {
-            get => _transactionTypeMessage;
-            set
-            {
-                _transactionTypeMessage = value;
-                OnPropertyChanged(nameof(TransactionTypeErrorMessage));
-            }
-        }
-
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -59,15 +49,13 @@ namespace BudgetTracker.WPF.ViewModels
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
-        public bool CanSubmit => string.IsNullOrEmpty(NameErrorMessage) &&
-                                 string.IsNullOrEmpty(TransactionTypeErrorMessage);
+        public bool CanSubmit => string.IsNullOrEmpty(NameErrorMessage);
 
         public ICommand SubmitCommand { get; }
 
         public CreateCategoryFormViewModel(IRenavigator renavigator, IUserStore userStore)
         {
             NameErrorMessage = string.Empty;
-            TransactionTypeErrorMessage = string.Empty;
             SubmitCommand = new CreateCategoryCommand(this, renavigator, userStore);
         }
     }
