@@ -64,24 +64,24 @@
                 Command="{Binding UpdateCurrentViewModelCommand}" 
                 CommandParameter="{x:Static nav:ViewType.Categories}" />
             
-            <Button
+            <!--<Button
                 Grid.Row="7"
                 Content="Export data"
                 Background="{StaticResource BrushBackgroundPane}"
                 Foreground="{StaticResource BrushBodyCopy}"
                 BorderBrush="Transparent"
-                Command="{Binding ImportUserDataCommand}"
+                Command="{Binding ExportUserDataCommand}"
                 Padding="10 5"
-                HorizontalContentAlignment="Left" />
-            <Button
+                HorizontalContentAlignment="Left" />-->
+            <!--<Button
                 Grid.Row="8"
                 Content="Import data"
                 Background="{StaticResource BrushBackgroundPane}"
                 Foreground="{StaticResource BrushBodyCopy}"
                 BorderBrush="Transparent"
-                Command="{Binding ExportUserDataCommand}"
+                Command="{Binding ImportUserDataCommand}"
                 Padding="10 5"
-                HorizontalContentAlignment="Left" />
+                HorizontalContentAlignment="Left" />-->
             <Button 
                 Grid.Row="9" 
                 Content="Sign out" 

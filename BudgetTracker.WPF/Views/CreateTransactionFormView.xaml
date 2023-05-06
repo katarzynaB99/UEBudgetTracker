@@ -10,7 +10,6 @@
     <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.Resources>
             <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
-            <Style TargetType="DatePicker" BasedOn="{StaticResource FormInput}" />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
