@@ -103,7 +103,11 @@ namespace BudgetTracker.WPF.State.Users
                 AccountId = account.Id,
                 CategoryId = category.Id,
             };
-            return null;
+            var transactions = UserTransactions.ToList();
+            transactions.Add(newTransaction);
+            UserTransactions = transactions;
+            StateChanged?.Invoke();
+            return await _transactionService.Create(newTransaction);
         }
 
         public async Task RemoveAccount(Account account)

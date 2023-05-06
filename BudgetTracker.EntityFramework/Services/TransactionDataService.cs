@@ -66,8 +66,9 @@ namespace BudgetTracker.EntityFramework.Services
             IDataService<Account> accountService = new GenericDataService<Account>(_contextFactory);
 
             // Update account balance
-            entity.Account.Balance += entity.Amount;
-            await accountService.Update(entity.Account.Id, entity.Account);
+            var accountToUpdate = await accountService.Get(entity.AccountId);
+            accountToUpdate.Balance += entity.Amount;
+            await accountService.Update(entity.AccountId, accountToUpdate);
 
             // Proceed with creating as usual
             return await base.Create(entity);

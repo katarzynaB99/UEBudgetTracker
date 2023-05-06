@@ -11,6 +11,8 @@ namespace BudgetTracker.WPF.ViewModels
 {
     public class CreateTransactionFormViewModel : ViewModelBase
     {
+        private readonly IUserStore _userStore;
+
         // Transaction properties
         private string _name;
         private double _amount;
@@ -25,6 +27,29 @@ namespace BudgetTracker.WPF.ViewModels
         private string _accountErrorMessage;
         private string _categoryErrorMessage;
         private string _errorMessage;
+
+        private IEnumerable<Account> _userAccounts;
+        private IEnumerable<Category> _userCategories;
+
+        public IEnumerable<Account> UserAccounts
+        {
+            get => _userAccounts;
+            set
+            {
+                _userAccounts = value;
+                OnPropertyChanged(nameof(UserAccounts));
+            }
+        }
+
+        public IEnumerable<Category> UserCategories
+        {
+            get => _userCategories;
+            set
+            {
+                _userCategories = value;
+                OnPropertyChanged(nameof(UserCategories));
+            }
+        }
 
         public string Name
         {
@@ -151,12 +176,17 @@ namespace BudgetTracker.WPF.ViewModels
 
         public CreateTransactionFormViewModel(IRenavigator renavigator, IUserStore userStore)
         {
+            _userStore = userStore;
             NameErrorMessage = string.Empty;
             AmountErrorMessage = string.Empty;
             TransactionDateErrorMessage = string.Empty;
             AccountErrorMessage = string.Empty;
             CategoryErrorMessage = string.Empty;
-            SubmitCommand = new CreateTransactionCommand(this, renavigator, userStore);
+
+            UserAccounts = _userStore.CurrentUser?.Accounts;
+            UserCategories = _userStore.CurrentUser?.Categories;
+
+            SubmitCommand = new CreateTransactionCommand(this, renavigator, _userStore);
         }
     }
 }

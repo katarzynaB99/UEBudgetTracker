@@ -6,7 +6,108 @@
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="{StaticResource BrushSecondaryPane}">
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
+            <Style TargetType="DatePicker" BasedOn="{StaticResource FormInput}" />
+            <Style TargetType="ComboBox" BasedOn="{StaticResource FormInput}" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock 
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="Create new transaction"
+            HorizontalAlignment="Center"
+            Style="{StaticResource H1}"/>
+
+        <!-- Transaction amount -->
+        <TextBox 
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock 
+            Grid.Row="3" 
+            Grid.Column="1"
+            Text="{Binding AmountErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Transaction Name -->
+        <TextBox 
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock 
+            Grid.Row="5" 
+            Grid.Column="1"
+            Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Transaction date -->
+        <DatePicker 
+            Grid.Row="6"
+            Grid.Column="1"
+            Text="{Binding TransactionDate, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock 
+            Grid.Row="7" 
+            Grid.Column="1"
+            Text="{Binding TransactionDateErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Transaction account -->
+        <ComboBox  
+            Grid.Row="8"
+            Grid.Column="1" 
+            SelectedItem="{Binding Account, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding UserAccounts, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+        <TextBlock 
+            Grid.Row="9"
+            Grid.Column="1"
+            Text="{Binding AccountErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Transaction category -->
+        <ComboBox 
+            Grid.Row="10"
+            Grid.Column="1"
+            SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding UserCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+        <TextBlock 
+            Grid.Row="11"
+            Grid.Column="1"
+            Text="{Binding CategoryErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- General error message -->
+        <TextBlock 
+            Grid.Row="12"
+            Grid.Column="1"
+            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Submit form button -->
+        <Button
+            Grid.Row="13"
+            Grid.Column="1"
+            Style="{StaticResource ButtonPrimary}"
+            Content="Save"
+            HorizontalAlignment="Center"
+            Command="{Binding SubmitCommand}"
+            IsDefault="True"/>
     </Grid>
 </UserControl>
