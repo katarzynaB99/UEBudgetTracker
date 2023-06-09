@@ -26,7 +26,10 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _name = value;
+                NameErrorMessage = string.Empty;
+                ErrorMessage = string.Empty;
                 OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -37,6 +40,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _nameErrorMessage = value;
                 OnPropertyChanged(nameof(NameErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -47,9 +51,10 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _errorMessage = value;
                 OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
-        public bool CanSubmit => string.IsNullOrEmpty(NameErrorMessage);
+        public bool CanSubmit => string.IsNullOrEmpty(NameErrorMessage) && string.IsNullOrEmpty(ErrorMessage);
 
         public ICommand SubmitCommand { get; }
 

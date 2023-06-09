@@ -34,22 +34,30 @@
             HorizontalAlignment="Center"
             Style="{StaticResource H1}"/>
 
-        <TextBox 
+        <Label 
             Grid.Row="2"
             Grid.Column="1"
-            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock 
-            Grid.Row="3" 
+            Style="{StaticResource FormLabel}"
+            Content="NAME"/>
+        <TextBox 
+            Grid.Row="3"
             Grid.Column="1"
+            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock 
+            Grid.Row="4" 
+            Grid.Column="1"
+            Foreground="{StaticResource BrushError}"
             Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock 
-            Grid.Row="6"
+            Grid.Row="5"
             Grid.Column="1"
+            Foreground="{StaticResource BrushError}"
             Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button
-            Grid.Row="7"
+            Grid.Row="6"
             Grid.Column="1"
             Style="{StaticResource ButtonPrimary}"
             Content="Save"

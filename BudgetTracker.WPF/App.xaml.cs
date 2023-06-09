@@ -49,6 +49,7 @@ namespace BudgetTracker.WPF
             services.AddSingleton<IDataService<Account>, GenericDataService<Account>>();
             services.AddSingleton<IAccountService, AccountDataService>();
             services.AddSingleton<IBillService, BillDataService>();
+            services.AddSingleton<ICategoryService, CategoryDataService>();
             services.AddSingleton<IDataService<Category>, GenericDataService<Category>>();
             services.AddSingleton<IDataService<User>, GenericDataService<User>>();
             services.AddSingleton<IUserService, UserDataService>();

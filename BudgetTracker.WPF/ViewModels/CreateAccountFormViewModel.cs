@@ -28,6 +28,7 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _name = value;
+                ErrorMessage = string.Empty;
                 OnPropertyChanged(nameof(Name));
                 if (string.IsNullOrEmpty(value))
                 {
@@ -47,6 +48,7 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _balanceField = value;
+                ErrorMessage = string.Empty;
 
                 OnPropertyChanged(nameof(BalanceField));
                 if (string.IsNullOrEmpty(value))

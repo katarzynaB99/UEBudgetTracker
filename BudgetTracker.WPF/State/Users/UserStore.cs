@@ -14,7 +14,7 @@ namespace BudgetTracker.WPF.State.Users
         private readonly IAccountService _accountDataService;
         private readonly IBillService _billDataService;
         private readonly ITransactionService _transactionService;
-        private readonly IDataService<Category> _categoryDataService;
+        private readonly ICategoryService _categoryDataService;
 
         private User _currentUser;
         private IEnumerable<Transaction> _userTransactions;
@@ -183,7 +183,7 @@ namespace BudgetTracker.WPF.State.Users
             IAccountService accountDataService,
             IBillService billDataService,
             ITransactionService transactionService,
-            IDataService<Category> categoryDataService)
+            ICategoryService categoryDataService)
         {
             _userDataService = userDataService;
             _accountDataService = accountDataService;

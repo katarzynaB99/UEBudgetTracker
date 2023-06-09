@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using BudgetTracker.Domain.Exceptions;
 using BudgetTracker.WPF.State.Navigators;
 using BudgetTracker.WPF.State.Users;
 using BudgetTracker.WPF.ViewModels;
@@ -34,6 +35,11 @@ namespace BudgetTracker.WPF.Commands.Create
             {
                 await _userStore.CreateCategory(_createCategoryFormViewModel.Name);
                 _renavigator.Renavigate();
+            }
+            catch (CategoryNameExistsException)
+            {
+                _createCategoryFormViewModel.NameErrorMessage =
+                    "A category with this name already exists.";
             }
             catch (Exception)
             {
