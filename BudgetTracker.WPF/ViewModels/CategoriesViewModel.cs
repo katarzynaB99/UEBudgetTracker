@@ -23,8 +23,11 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _categories = value;
                 OnPropertyChanged(nameof(Categories));
+                OnPropertyChanged(nameof(CategoriesEmpty));
             }
         }
+
+        public bool CategoriesEmpty => Categories.Count == 0;
 
         public ICommand ViewCreateCategoryFormCommand { get; }
         public ICommand RemoveCategoryCommand { get; }

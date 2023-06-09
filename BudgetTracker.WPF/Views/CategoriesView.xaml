@@ -17,10 +17,25 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <!-- Page heading -->
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Categories" Style="{StaticResource H1}" Margin="10 15" />
+            <!-- Create category button -->
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add category" Command="{Binding ViewCreateCategoryFormCommand}" />
         </Grid>
 
+        <!-- Empty categories list message -->
+        <TextBlock 
+            Grid.Row="1" 
+            Foreground="{DynamicResource BrushLabels}" 
+            Background="{DynamicResource BrushBackgroundPane}" 
+            Margin="10 15" 
+            Padding="10 15" 
+            Height="48" 
+            Text="No categories created yet." 
+            VerticalAlignment="Top"
+            Visibility="{Binding CategoriesEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <!-- List of categories -->
         <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Categories, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
