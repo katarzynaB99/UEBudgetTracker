@@ -16,6 +16,7 @@ namespace BudgetTracker.WPF.ViewModels
         // Transaction properties
         private string _name;
         private double _amount;
+        private string _amountField;
         private DateTime _transactionDate;
         private Account _account;
         private Category _category;
@@ -57,8 +58,17 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _name = value;
-                NameErrorMessage = string.Empty;
+                if (string.IsNullOrEmpty(value))
+                {
+                    NameErrorMessage = "This field is required.";
+                }
+                else
+                {
+                    NameErrorMessage = string.Empty;
+                }
+                ErrorMessage = string.Empty;
                 OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -70,6 +80,35 @@ namespace BudgetTracker.WPF.ViewModels
                 _amount = value;
                 AmountErrorMessage = string.Empty;
                 OnPropertyChanged(nameof(Amount));
+                OnPropertyChanged(nameof(CanSubmit));
+            }
+        }
+
+        public string AmountField
+        {
+            get => _amountField;
+            set
+            {
+                _amountField = value;
+                ErrorMessage = string.Empty;
+
+                OnPropertyChanged(nameof(AmountField));
+
+                if (string.IsNullOrEmpty(value))
+                {
+                    AmountErrorMessage = "This field is required.";
+                }
+                else if (!double.TryParse(value, out _))
+                {
+                    AmountErrorMessage = "Value must be a valid number.";
+                }
+                else
+                {
+                    AmountErrorMessage = string.Empty;
+                    Amount = double.Parse(value);
+                }
+                ErrorMessage = string.Empty;
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -79,8 +118,17 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _transactionDate = value;
-                TransactionDateErrorMessage = string.Empty;
+                if (value == null)
+                {
+                    TransactionDateErrorMessage = "This field is required";
+                }
+                else
+                {
+                    TransactionDateErrorMessage = string.Empty;
+                }
+                ErrorMessage = string.Empty;
                 OnPropertyChanged(nameof(TransactionDate));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -90,8 +138,17 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _account = value;
-                AccountErrorMessage = string.Empty;
+                if (value == null)
+                {
+                    AccountErrorMessage = "This field is required";
+                }
+                else
+                {
+                    AccountErrorMessage = string.Empty;
+                }
+                ErrorMessage = string.Empty;
                 OnPropertyChanged(nameof(Account));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -101,8 +158,19 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _category = value;
-                CategoryErrorMessage = string.Empty;
+
+                if (value == null)
+                {
+                    CategoryErrorMessage = "This field is required";
+                }
+                else
+                {
+                    CategoryErrorMessage = string.Empty;
+                }
+
+                ErrorMessage = string.Empty;
                 OnPropertyChanged(nameof(Category));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -113,6 +181,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _nameErrorMessage = value;
                 OnPropertyChanged(nameof(NameErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -123,6 +192,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _amountErrorMessage = value;
                 OnPropertyChanged(nameof(AmountErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -133,6 +203,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _transactionDateErrorMessage = value;
                 OnPropertyChanged(nameof(TransactionDateErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -143,6 +214,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _accountErrorMessage = value;
                 OnPropertyChanged(nameof(AccountErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -153,6 +225,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _categoryErrorMessage = value;
                 OnPropertyChanged(nameof(CategoryErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -163,6 +236,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _errorMessage = value;
                 OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 

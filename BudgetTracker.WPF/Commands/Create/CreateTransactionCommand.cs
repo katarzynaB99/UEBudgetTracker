@@ -32,6 +32,31 @@ namespace BudgetTracker.WPF.Commands.Create
 
         public override async Task ExecuteAsync(object parameter)
         {
+            bool errors = false;
+            if (_createTransactionFormViewModel.TransactionDate == null)
+            {
+                _createTransactionFormViewModel.TransactionDateErrorMessage = "This field is required.";
+                errors = true;
+            }
+
+            if (_createTransactionFormViewModel.Category == null)
+            {
+                _createTransactionFormViewModel.CategoryErrorMessage = "This field is required.";
+                errors = true;
+            }
+
+            if (_createTransactionFormViewModel.Account == null)
+            {
+                _createTransactionFormViewModel.AccountErrorMessage = "This field is required.";
+                errors = true;
+            }
+
+            if (errors)
+            {
+                _createTransactionFormViewModel.ErrorMessage = "There are some errors in the form.";
+                return;
+            }
+
             _createTransactionFormViewModel.ErrorMessage = string.Empty;
             try
             {
