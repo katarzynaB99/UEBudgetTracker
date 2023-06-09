@@ -27,8 +27,11 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _transactions = value;
                 OnPropertyChanged(nameof(Transactions));
+                OnPropertyChanged(nameof(TransactionsEmpty));
             }
         }
+
+        public bool TransactionsEmpty => Transactions.Count == 0;
 
         public ICommand ViewCreateTransactionFormCommand { get; }
         public ICommand RemoveTransactionCommand { get; }

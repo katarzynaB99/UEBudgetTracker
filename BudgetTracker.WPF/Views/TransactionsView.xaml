@@ -17,10 +17,25 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <!-- Page heading -->
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Transactions" Style="{StaticResource H1}" Margin="10 15" />
+            <!-- Create transaction button -->
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add transaction" Command="{Binding ViewCreateTransactionFormCommand}" />
         </Grid>
 
+        <!-- Empty transactions list message -->
+        <TextBlock 
+            Grid.Row="1" 
+            Foreground="{DynamicResource BrushLabels}" 
+            Background="{DynamicResource BrushBackgroundPane}" 
+            Margin="10 15" 
+            Padding="10 15" 
+            Height="48" 
+            Text="No transactions added yet." 
+            VerticalAlignment="Top"
+            Visibility="{Binding TransactionsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <!-- Transactions list -->
         <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Transactions, Mode=TwoWay}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
