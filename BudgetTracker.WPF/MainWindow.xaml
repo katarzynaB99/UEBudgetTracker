@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:BudgetTracker.WPF"
         xmlns:controls="clr-namespace:BudgetTracker.WPF.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="BudgetTracker" 
+        Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -17,8 +18,14 @@
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsLoggedIn}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed" />
+                        <DataTrigger 
+                            Binding="{Binding IsLoggedIn}" 
+                            Value="False"
+                        >
+                            <Setter 
+                                Property="Visibility" 
+                                Value="Collapsed" 
+                            />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -26,8 +33,15 @@
             <controls:NavigationBar />
         </Grid>
 
-        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
+        <ScrollViewer 
+            Grid.Column="1" 
+            VerticalScrollBarVisibility="Auto" 
+            HorizontalScrollBarVisibility="Disabled"
+        >
+            <ContentControl 
+                Grid.Column="1" 
+                Content="{Binding CurrentViewModel}"
+            />
         </ScrollViewer>
     </Grid>
 </Window>

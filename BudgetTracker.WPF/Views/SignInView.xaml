@@ -9,8 +9,14 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.Resources>
-            <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
-            <Style TargetType="PasswordBox" BasedOn="{StaticResource FormInput}" />
+            <Style 
+                TargetType="TextBox" 
+                BasedOn="{StaticResource FormInput}"
+            />
+            <Style 
+                TargetType="PasswordBox" 
+                BasedOn="{StaticResource FormInput}" 
+            />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -35,7 +41,8 @@
             Grid.Column="1" 
             Text="Budget Tracker"
             HorizontalAlignment="Center"
-            Style="{StaticResource H1}" />
+            Style="{StaticResource H1}" 
+        />
 
         <!-- Username -->
         <Label 
@@ -44,11 +51,13 @@
             Grid.Column="1"
             Grid.Row="2" 
             VerticalAlignment="Center"
-            Style="{StaticResource FormLabel}"/>
+            Style="{StaticResource FormLabel}"
+        />
         <TextBox 
             Grid.Row="3" 
             Grid.Column="1"
-            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- Password -->
         <Label 
@@ -57,18 +66,21 @@
             Grid.Column="1"
             Grid.Row="4" 
             VerticalAlignment="Center"
-            Style="{StaticResource FormLabel}"/>
+            Style="{StaticResource FormLabel}"
+        />
         <components:BindablePasswordBox 
             Grid.Row="5" 
             Grid.Column="1"
-            Password="{Binding Password}" />
+            Password="{Binding Password}" 
+        />
 
         <!-- Error message -->
         <TextBlock 
             Grid.Row="6"
             Grid.Column="1"
             Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
-            Foreground="{StaticResource BrushError}"/>
+            Foreground="{StaticResource BrushError}"
+        />
 
         <Button 
             Grid.Row="7" 
@@ -77,7 +89,8 @@
             HorizontalAlignment="Center" 
             Content="Sign in"
             Command="{Binding SignInCommand}"
-            IsDefault="True"/>
+            IsDefault="True"
+        />
 
         <Button 
             Grid.Row="8" 
@@ -85,6 +98,7 @@
             HorizontalAlignment="Center" 
             Style="{StaticResource LinkButton}"
             Content="Don't have an account? Register here!"
-            Command="{Binding ViewRegisterCommand}"/>
+            Command="{Binding ViewRegisterCommand}"
+        />
     </Grid>
 </UserControl>

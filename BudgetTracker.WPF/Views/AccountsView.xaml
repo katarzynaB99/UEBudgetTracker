@@ -18,9 +18,21 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <!-- Page heading -->
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Accounts" Style="{StaticResource H1}" Margin="10 15"/>
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Text="Accounts" 
+                Style="{StaticResource H1}" 
+                Margin="10 15"
+            />
             <!-- Create account button -->
-            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Command="{Binding ViewCreateAccountFormCommand}" Content="Add account" />
+            <Button 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Style="{StaticResource ButtonPrimary}" 
+                Command="{Binding ViewCreateAccountFormCommand}" 
+                Content="Add account"
+            />
         </Grid>
 
         <!-- Empty accounts list message -->
@@ -36,28 +48,60 @@
             Visibility="{Binding AccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <!-- List of accounts -->
-        <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Accounts, Mode=TwoWay}">
+        <ListView 
+            Name="listView" 
+            Grid.Row="1" 
+            BorderBrush="Transparent" 
+            Background="Transparent" 
+            ItemsSource="{Binding Accounts, Mode=TwoWay}"
+        >
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter 
+                        Property="HorizontalContentAlignment" 
+                        Value="Stretch"
+                    />
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="5 5" Background="{StaticResource BrushSurfaceElement}">
+                    <Grid 
+                        Margin="5 5" 
+                        Background="{StaticResource BrushSurfaceElement}"
+                    >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MaxWidth="400" />
+                            <ColumnDefinition 
+                                Width="Auto" 
+                                MaxWidth="400"
+                            />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="{StaticResource BrushBodyCopy}"  FontWeight="Bold" Margin="20 15" />
-                        <TextBlock Grid.Column="1" Text="{Binding Balance}" Foreground="{StaticResource BrushBodyCopy}"  Margin="20 15"  />
-                        <Border Grid.Column="2" Margin="20 10" >
-                            <Button Content="Remove"
-                                    Background="{StaticResource BrushError}"
-                                    Padding="10 5"
-                                    Command="{Binding ElementName=listView, Path=DataContext.RemoveAccountCommand}"
-                                    CommandParameter="{Binding}" />
+                        <TextBlock 
+                            Grid.Column="0" 
+                            Text="{Binding Name}" 
+                            Foreground="{StaticResource BrushBodyCopy}"  
+                            FontWeight="Bold" 
+                            Margin="20 15" 
+                        />
+                        <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding Balance, StringFormat={}{0:#.00}}" 
+                            Foreground="{StaticResource BrushBodyCopy}" 
+                            Margin="20 15"
+                            HorizontalAlignment="Right" 
+                        />
+                        <Border 
+                            Grid.Column="2" 
+                            Margin="20 10" 
+                        >
+                            <Button 
+                                Content="Remove"
+                                Background="{StaticResource BrushError}"
+                                Padding="10 5"
+                                Command="{Binding ElementName=listView, Path=DataContext.RemoveAccountCommand}"
+                                CommandParameter="{Binding}" 
+                            />
                         </Border>
                     </Grid>
                 </DataTemplate>

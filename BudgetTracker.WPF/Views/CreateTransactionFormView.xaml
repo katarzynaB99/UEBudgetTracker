@@ -9,7 +9,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.Resources>
-            <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
+            <Style 
+                TargetType="TextBox" 
+                BasedOn="{StaticResource FormInput}" 
+            />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -44,98 +47,115 @@
             Grid.Column="1"
             Text="Create new transaction"
             HorizontalAlignment="Center"
-            Style="{StaticResource H1}"/>
+            Style="{StaticResource H1}"
+        />
 
         <!-- Transaction amount -->
         <Label 
             Grid.Row="2"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="AMOUNT"/>
+            Content="AMOUNT"
+        />
         <TextBox 
             Grid.Row="3"
             Grid.Column="1"
-            Text="{Binding AmountField, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding AmountField, UpdateSourceTrigger=PropertyChanged}" 
+        />
         <TextBlock 
             Grid.Row="4" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding AmountErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding AmountErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- Transaction Name -->
         <Label 
             Grid.Row="5"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="NAME"/>
+            Content="NAME"
+        />
         <TextBox 
             Grid.Row="6"
             Grid.Column="1"
-            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+        />
         <TextBlock 
             Grid.Row="7" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- Transaction date -->
         <Label 
             Grid.Row="8"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="DATE"/>
+            Content="DATE"
+        />
         <DatePicker 
             Grid.Row="9"
             Grid.Column="1"
-            SelectedDate="{Binding TransactionDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue={x:Static system:DateTime.Now}}" />
+            SelectedDate="{Binding TransactionDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue={x:Static system:DateTime.Now}}" 
+        />
         <TextBlock 
             Grid.Row="10" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding TransactionDateErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding TransactionDateErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- Transaction account -->
         <Label 
             Grid.Row="11"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="ACCOUNT"/>
+            Content="ACCOUNT"
+        />
         <ComboBox  
             Grid.Row="12"
             Grid.Column="1" 
             SelectedItem="{Binding Account, UpdateSourceTrigger=PropertyChanged}"
             ItemsSource="{Binding UserAccounts, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-            DisplayMemberPath="Name"/>
+            DisplayMemberPath="Name"
+        />
         <TextBlock 
             Grid.Row="13"
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding AccountErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding AccountErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- Transaction category -->
         <Label 
             Grid.Row="14"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="CATEGORY"/>
+            Content="CATEGORY"
+        />
         <ComboBox 
             Grid.Row="15"
             Grid.Column="1"
             SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
             ItemsSource="{Binding UserCategories, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-            DisplayMemberPath="Name"/>
+            DisplayMemberPath="Name"
+        />
         <TextBlock 
             Grid.Row="16"
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding CategoryErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding CategoryErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- General error message -->
         <TextBlock 
             Grid.Row="17"
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- Submit form button -->
         <Button
@@ -145,6 +165,7 @@
             HorizontalAlignment="Center"
             Command="{Binding SubmitCommand}"
             Style="{StaticResource ButtonPrimary}"
-            IsDefault="True" />
+            IsDefault="True"
+        />
     </Grid>
 </UserControl>

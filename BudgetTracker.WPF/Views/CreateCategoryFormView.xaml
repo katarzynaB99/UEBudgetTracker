@@ -8,7 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.Resources>
-            <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
+            <Style 
+                TargetType="TextBox" 
+                BasedOn="{StaticResource FormInput}" 
+            />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -32,29 +35,34 @@
             Grid.Column="1"
             Text="Create new category"
             HorizontalAlignment="Center"
-            Style="{StaticResource H1}"/>
+            Style="{StaticResource H1}"
+        />
 
         <Label 
             Grid.Row="2"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="NAME"/>
+            Content="NAME"
+        />
         <TextBox 
             Grid.Row="3"
             Grid.Column="1"
-            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <TextBlock 
             Grid.Row="4" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <TextBlock 
             Grid.Row="5"
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <Button
             Grid.Row="6"
@@ -63,6 +71,7 @@
             Content="Save"
             HorizontalAlignment="Center"
             Command="{Binding SubmitCommand}"
-            IsDefault="True"/>
+            IsDefault="True"
+        />
     </Grid>
 </UserControl>

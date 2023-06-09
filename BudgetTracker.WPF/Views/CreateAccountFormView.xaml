@@ -9,7 +9,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource BrushSecondaryPane}">
         <Grid.Resources>
-            <Style TargetType="TextBox" BasedOn="{StaticResource FormInput}" />
+            <Style 
+                TargetType="TextBox" 
+                BasedOn="{StaticResource FormInput}" 
+            />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -35,67 +38,54 @@
             Grid.Column="1"
             Text="Create new account"
             HorizontalAlignment="Center"
-            Style="{StaticResource H1}"/>
+            Style="{StaticResource H1}"
+        />
 
         <!-- Account name -->
         <Label 
             Grid.Row="2"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="NAME"/>
+            Content="NAME"
+        />
         <TextBox 
             Grid.Row="3"
             Grid.Column="1"
-            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+        />
         <TextBlock 
             Grid.Row="4" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
-        <!-- Acocunt initial balance -->
+        <!-- Account initial balance -->
         <Label 
             Grid.Row="5"
             Grid.Column="1"
             Style="{StaticResource FormLabel}"
-            Content="INITIAL BALANCE"/>
-        <!--<TextBox 
-            Validation.ErrorTemplate="{x:Null}"
-            Grid.Row="6"
-            Grid.Column="1">
-            <TextBox.Text>
-                <Binding Path="Balance" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validation:DoubleValidation />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-            <TextBox.Style>
-                <Style BasedOn="{StaticResource FormInput}" TargetType="TextBox">
-                    <Style.Triggers>
-                        <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BrushError}"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>-->
+            Content="INITIAL BALANCE"
+        />
         <TextBox 
             Grid.Row="6"
             Grid.Column="1"
-            Text="{Binding BalanceField, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding BalanceField, UpdateSourceTrigger=PropertyChanged}"
+        />
         <TextBlock 
             Grid.Row="7" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding BalanceErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding BalanceErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- General error message -->
         <TextBlock 
             Grid.Row="8"
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
-            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+            Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+        />
 
         <!-- Submit button -->
         <Button
@@ -105,6 +95,7 @@
             Content="Save"
             HorizontalAlignment="Center"
             Command="{Binding SubmitCommand}"
-            IsDefault="True"/>
+            IsDefault="True"
+        />
     </Grid>
 </UserControl>

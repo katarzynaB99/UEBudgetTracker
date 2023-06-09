@@ -18,9 +18,21 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <!-- Page heading -->
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Categories" Style="{StaticResource H1}" Margin="10 15" />
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Text="Categories" 
+                Style="{StaticResource H1}" 
+                Margin="10 15"
+            />
             <!-- Create category button -->
-            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add category" Command="{Binding ViewCreateCategoryFormCommand}" />
+            <Button 
+                Grid.Row="0" 
+                Grid.Column="1"
+                Style="{StaticResource ButtonPrimary}"
+                Content="Add category" 
+                Command="{Binding ViewCreateCategoryFormCommand}" 
+            />
         </Grid>
 
         <!-- Empty categories list message -->
@@ -36,27 +48,50 @@
             Visibility="{Binding CategoriesEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <!-- List of categories -->
-        <ListView Name="listView" Grid.Row="1" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding Categories, Mode=TwoWay}">
+        <ListView 
+            Name="listView" 
+            Grid.Row="1" 
+            BorderBrush="Transparent" 
+            Background="Transparent" 
+            ItemsSource="{Binding Categories, Mode=TwoWay}"
+        >
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter 
+                        Property="HorizontalContentAlignment" 
+                        Value="Stretch"
+                    />
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="5 5" Background="{StaticResource BrushSurfaceElement}">
+                    <Grid 
+                        Margin="5 5" 
+                        Background="{StaticResource BrushSurfaceElement}"
+                    >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="400" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="10 15" FontWeight="Bold" Foreground="{StaticResource BrushBodyCopy}" Text="{Binding Name}" />
-                        <Border Grid.Column="2" Margin="20 10">
-                            <Button Content="Remove"
-                                    Background="{StaticResource BrushError}"
-                                    Padding="10 5"
-                                    Command="{Binding ElementName=listView, Path=DataContext.RemoveCategoryCommand}"
-                                    CommandParameter="{Binding}" />
+                        <TextBlock 
+                            Grid.Column="0" 
+                            Margin="10 15" 
+                            FontWeight="Bold" 
+                            Foreground="{StaticResource BrushBodyCopy}" 
+                            Text="{Binding Name}" 
+                        />
+                        <Border 
+                            Grid.Column="2" 
+                            Margin="20 10"
+                        >
+                            <Button 
+                                Content="Remove"
+                                Background="{StaticResource BrushError}"
+                                Padding="10 5"
+                                Command="{Binding ElementName=listView, Path=DataContext.RemoveCategoryCommand}"
+                                CommandParameter="{Binding}" 
+                            />
                         </Border>
                     </Grid>
                 </DataTemplate>

@@ -18,9 +18,20 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <!-- Page heading -->
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Bills" Style="{StaticResource H1}" />
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Text="Bills" 
+                Style="{StaticResource H1}" 
+            />
             <!-- Create bill button -->
-            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add bill" Command="{Binding ViewCreateBillFormCommand}" />
+            <Button 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Style="{StaticResource ButtonPrimary}" 
+                Content="Add bill" 
+                Command="{Binding ViewCreateBillFormCommand}" 
+            />
         </Grid>
 
         <!-- Empty bills list message -->
@@ -36,7 +47,11 @@
             Visibility="{Binding BillsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
         <!-- List of bills -->
-        <ListView Grid.Row="1" BorderBrush="Transparent" ItemsSource="{Binding Bills}">
+        <ListView 
+            Grid.Row="1" 
+            BorderBrush="Transparent" 
+            ItemsSource="{Binding Bills}"
+        >
             <ListView.View>
                 <GridView>
                     <GridView.ColumnHeaderContainerStyle>
@@ -44,7 +59,11 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="GridViewColumnHeader">
-                                        <Border BorderBrush="Gray" BorderThickness="0 0 0 1" Padding="0 5 50 5">
+                                        <Border 
+                                            BorderBrush="Gray" 
+                                            BorderThickness="0 0 0 1" 
+                                            Padding="0 5 50 5"
+                                        >
                                             <TextBlock Text="{TemplateBinding Content}"/>
                                         </Border>
                                     </ControlTemplate>
@@ -53,18 +72,42 @@
                         </Style>
                     </GridView.ColumnHeaderContainerStyle>
 
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Due" DisplayMemberBinding="{Binding DueDate}" />
-                    <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}" />
-                    <GridViewColumn Header="Paid" DisplayMemberBinding="{Binding Paid}" />
+                    <GridViewColumn 
+                        Header="Name" 
+                        DisplayMemberBinding="{Binding Name}"
+                    />
+                    <GridViewColumn 
+                        Header="Due" 
+                        DisplayMemberBinding="{Binding DueDate}"
+                    />
+                    <GridViewColumn 
+                        Header="Amount" 
+                        DisplayMemberBinding="{Binding Amount}" 
+                    />
+                    <GridViewColumn 
+                        Header="Paid" 
+                        DisplayMemberBinding="{Binding Paid}" 
+                    />
                 </GridView>
             </ListView.View>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Focusable" Value="False"/>
-                    <Setter Property="IsHitTestVisible" Value="False"/>
-                    <Setter Property="Margin" Value="0 10"/>
-                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter 
+                        Property="Focusable" 
+                        Value="False"
+                    />
+                    <Setter 
+                        Property="IsHitTestVisible" 
+                        Value="False"
+                    />
+                    <Setter 
+                        Property="Margin" 
+                        Value="0 10"
+                    />
+                    <Setter 
+                        Property="Foreground" 
+                        Value="Black"
+                    />
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
