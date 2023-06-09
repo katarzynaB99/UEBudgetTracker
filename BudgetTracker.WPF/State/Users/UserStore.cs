@@ -125,6 +125,8 @@ namespace BudgetTracker.WPF.State.Users
             CurrentUser.Accounts = accounts;
             StateChanged?.Invoke();
             await _accountDataService.Delete(account.Id);
+            var transactions = UserTransactions.Where(e => e.AccountId == account.Id).ToList();
+            transactions.ForEach((t) => { RemoveTransaction(t); });
         }
 
         public async Task RemoveCategory(Category category)

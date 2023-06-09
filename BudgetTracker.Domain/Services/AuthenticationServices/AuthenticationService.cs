@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using BudgetTracker.Domain.Exceptions;
 using BudgetTracker.Domain.Models;
@@ -24,14 +25,14 @@ namespace BudgetTracker.Domain.Services.AuthenticationServices
 
             if (password != confirmPassword)
             {
-                result = RegistrationResult.PasswordsDoNotMatch;
+                throw new PasswordsDontMatchException(password, confirmPassword);
             }
 
             var usernameUser = await _userService.GetByUsername(username);
 
             if (usernameUser != null)
             {
-                result = RegistrationResult.UsernameAlreadyExists;
+                throw new UserExistsException(username);
             }
 
             if (result == RegistrationResult.Success)

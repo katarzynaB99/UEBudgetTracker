@@ -53,7 +53,7 @@ namespace BudgetTracker.WPF.ViewModels
             set
             {
                 _errorMessage = value;
-                OnPropertyChanged(ErrorMessage);
+                OnPropertyChanged(nameof(ErrorMessage));
                 OnPropertyChanged(nameof(CanSignUp));
             }
         }

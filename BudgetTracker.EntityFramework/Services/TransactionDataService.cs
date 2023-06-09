@@ -115,12 +115,20 @@ namespace BudgetTracker.EntityFramework.Services
 
             // Update account balance before deleting
             var transaction = await Get(id);
-            var accountToUpdate = await accountService.Get(transaction.AccountId);
-            accountToUpdate.Balance -= transaction.Amount;
-            await accountService.Update(transaction.AccountId, accountToUpdate);
+            if (transaction != null)
+            {
+                var accountToUpdate = await accountService.Get(transaction.AccountId);
 
-            // Proceed with deleting as usual
-            return await base.Delete(id);
+                if (accountToUpdate != null)
+                {
+                    accountToUpdate.Balance -= transaction.Amount;
+                    await accountService.Update(transaction.AccountId, accountToUpdate);
+                }
+                // Proceed with deleting as usual
+                return await base.Delete(id);
+            }
+
+            return true;
         }
     }
 }

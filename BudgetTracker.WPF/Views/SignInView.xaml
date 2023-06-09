@@ -20,6 +20,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -35,23 +37,41 @@
             HorizontalAlignment="Center"
             Style="{StaticResource H1}" />
 
-        <TextBox 
+        <!-- Username -->
+        <Label 
+            Content="USERNAME" 
+            HorizontalAlignment="Left" 
+            Grid.Column="1"
             Grid.Row="2" 
+            VerticalAlignment="Center"
+            Style="{StaticResource FormLabel}"/>
+        <TextBox 
+            Grid.Row="3" 
             Grid.Column="1"
             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- Password -->
+        <Label 
+            Content="PASSWORD" 
+            HorizontalAlignment="Left" 
+            Grid.Column="1"
+            Grid.Row="4" 
+            VerticalAlignment="Center"
+            Style="{StaticResource FormLabel}"/>
         <components:BindablePasswordBox 
-            Grid.Row="3" 
+            Grid.Row="5" 
             Grid.Column="1"
             Password="{Binding Password}" />
 
+        <!-- Error message -->
         <TextBlock 
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="1"
             Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"
             Foreground="{StaticResource BrushError}"/>
 
         <Button 
-            Grid.Row="5" 
+            Grid.Row="7" 
             Grid.Column="1" 
             Style="{StaticResource ButtonPrimary}"
             HorizontalAlignment="Center" 
@@ -60,7 +80,7 @@
             IsDefault="True"/>
 
         <Button 
-            Grid.Row="6" 
+            Grid.Row="8" 
             Grid.Column="1" 
             HorizontalAlignment="Center" 
             Style="{StaticResource LinkButton}"
