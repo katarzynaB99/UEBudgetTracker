@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BudgetTracker.Domain.Exceptions;
 using BudgetTracker.WPF.State.Navigators;
 using BudgetTracker.WPF.State.Users;
 using BudgetTracker.WPF.ViewModels;
@@ -38,6 +39,11 @@ namespace BudgetTracker.WPF.Commands.Create
                 await _userStore.CreateAccount(_createAccountFormViewModel.Name,
                     _createAccountFormViewModel.Balance);
                 _renavigator.Renavigate();
+            }
+            catch (AccountNameExistsException)
+            {
+                _createAccountFormViewModel.NameErrorMessage =
+                    "Account with this name already exists.";
             }
             catch (Exception)
             {

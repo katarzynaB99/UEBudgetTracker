@@ -14,6 +14,7 @@ namespace BudgetTracker.WPF.ViewModels
     {
         // Account properties
         private string _name;
+        private string _balanceField;
         private double _balance;
 
         // UI messages
@@ -28,9 +29,39 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
-                if (!string.IsNullOrEmpty(value)) return;
-                NameErrorMessage = "This field is required.";
-                OnPropertyChanged(nameof(NameErrorMessage));
+                if (string.IsNullOrEmpty(value))
+                {
+                    NameErrorMessage = "This field is required.";
+                }
+                else
+                {
+                    NameErrorMessage = string.Empty;
+                }
+                OnPropertyChanged(nameof(CanSubmit));
+            }
+        }
+
+        public string BalanceField
+        {
+            get => _balanceField;
+            set
+            {
+                _balanceField = value;
+
+                OnPropertyChanged(nameof(BalanceField));
+                if (string.IsNullOrEmpty(value))
+                {
+                    BalanceErrorMessage = "This field is required.";
+                } else if (!double.TryParse(value, out _))
+                {
+                    BalanceErrorMessage = "Value must be a valid number.";
+                }
+                else
+                {
+                    BalanceErrorMessage = string.Empty;
+                    Balance = double.Parse(value);
+                }
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -41,11 +72,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _balance = value;
                 OnPropertyChanged(nameof(Balance));
-                if (value == null || value.ToString() == "")
-                {
-                    BalanceErrorMessage = "This field is required.";
-                    OnPropertyChanged(nameof(BalanceErrorMessage));
-                }
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -56,6 +83,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _nameErrorMessage = value;
                 OnPropertyChanged(nameof(NameErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -66,6 +94,7 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _balanceErrorMessage = value;
                 OnPropertyChanged(nameof(BalanceErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -76,10 +105,14 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _errorMessage = value;
                 OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
-        public bool CanSubmit => string.IsNullOrEmpty(NameErrorMessage) && 
+        public bool CanSubmit => !string.IsNullOrEmpty(Name) && 
+                                 !string.IsNullOrEmpty(BalanceField) &&
+                                 double.TryParse(BalanceField, out _) &&
+                                 string.IsNullOrEmpty(NameErrorMessage) && 
                                  string.IsNullOrEmpty(BalanceErrorMessage);
 
         public ICommand SubmitCommand { get; }

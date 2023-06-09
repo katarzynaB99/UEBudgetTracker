@@ -11,7 +11,7 @@ namespace BudgetTracker.WPF.State.Users
     public class UserStore : IUserStore
     {
         private readonly IUserService _userDataService;
-        private readonly IDataService<Account> _accountDataService;
+        private readonly IAccountService _accountDataService;
         private readonly IBillService _billDataService;
         private readonly ITransactionService _transactionService;
         private readonly IDataService<Category> _categoryDataService;
@@ -40,6 +40,7 @@ namespace BudgetTracker.WPF.State.Users
         }
 
         public event Action StateChanged;
+
         public async Task<Account> CreateAccount(string name, double balance)
         {
             var newAccount = new Account
@@ -50,11 +51,13 @@ namespace BudgetTracker.WPF.State.Users
                 UserId = CurrentUser.Id
             };
 
+            var result = await _accountDataService.Create(newAccount);
+
             var accounts = CurrentUser.Accounts.ToList();
             accounts.Add(newAccount);
             CurrentUser.Accounts = accounts;
             StateChanged?.Invoke();
-            return await _accountDataService.Create(newAccount);
+            return result;
         }
 
         public async Task<Bill> CreateBill(string name, DateTime dueDate, double amount, bool paid, Category category)
@@ -70,11 +73,14 @@ namespace BudgetTracker.WPF.State.Users
                 CreationDate = DateTime.Now
             };
 
+            var entity = await _billDataService.Create(newBill);
+
             var bills = CurrentUser.Bills.ToList();
             bills.Add(newBill);
             CurrentUser.Bills = bills;
             StateChanged?.Invoke();
-            return await _billDataService.Create(newBill);
+
+            return entity;
         }
 
         public async Task<Category> CreateCategory(string name)
@@ -85,11 +91,15 @@ namespace BudgetTracker.WPF.State.Users
                 UserId = CurrentUser.Id,
                 CreationDate = DateTime.Now
             };
+            
+            var entity = await _categoryDataService.Create(newCategory);
+
             var categories = CurrentUser.Categories.ToList();
             categories.Add(newCategory);
             CurrentUser.Categories = categories;
             StateChanged?.Invoke();
-            return await _categoryDataService.Create(newCategory);
+
+            return entity;
         }
 
         public async Task<Transaction> CreateTransaction(string name, double amount, DateTime transactionDate,
@@ -104,7 +114,9 @@ namespace BudgetTracker.WPF.State.Users
                 CategoryId = category.Id,
                 CreationDate = DateTime.Now
             };
+
             var entity = await _transactionService.Create(newTransaction);
+
             var transactions = UserTransactions.ToList();
             transactions.Add(entity);
             UserTransactions = transactions;
@@ -120,27 +132,31 @@ namespace BudgetTracker.WPF.State.Users
 
         public async Task RemoveAccount(Account account)
         {
+            await _accountDataService.Delete(account.Id);
+
             var accounts = CurrentUser.Accounts.ToList();
             accounts.Remove(account);
             CurrentUser.Accounts = accounts;
             StateChanged?.Invoke();
-            await _accountDataService.Delete(account.Id);
+            
             var transactions = UserTransactions.Where(e => e.AccountId == account.Id).ToList();
             transactions.ForEach((t) => { RemoveTransaction(t); });
         }
 
         public async Task RemoveCategory(Category category)
         {
+            await _categoryDataService.Delete(category.Id);
+
             var categories = CurrentUser.Categories.ToList();
             categories.Remove(category);
             CurrentUser.Categories = categories;
             StateChanged?.Invoke();
-            await _categoryDataService.Delete(category.Id);
         }
 
         public async Task RemoveTransaction(Transaction transaction)
         {
             await _transactionService.Delete(transaction.Id);
+
             var transactions = UserTransactions.ToList();
             transactions.Remove(transaction);
             UserTransactions = transactions;
@@ -164,7 +180,7 @@ namespace BudgetTracker.WPF.State.Users
         }
 
         public UserStore(IUserService userDataService,
-            IDataService<Account> accountDataService,
+            IAccountService accountDataService,
             IBillService billDataService,
             ITransactionService transactionService,
             IDataService<Category> categoryDataService)

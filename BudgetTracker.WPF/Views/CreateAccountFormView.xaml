@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetTracker.WPF.Views"
+             xmlns:validation="clr-namespace:BudgetTracker.WPF.Validation"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource BrushSecondaryPane}">
@@ -12,6 +13,8 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -34,35 +37,69 @@
             HorizontalAlignment="Center"
             Style="{StaticResource H1}"/>
 
-        <TextBox 
+        <!-- Account name -->
+        <Label 
             Grid.Row="2"
+            Grid.Column="1"
+            Style="{StaticResource FormLabel}"
+            Content="NAME"/>
+        <TextBox 
+            Grid.Row="3"
             Grid.Column="1"
             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock 
-            Grid.Row="3" 
+            Grid.Row="4" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
             Text="{Binding NameErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBox 
-            Grid.Row="4"
+        <!-- Acocunt initial balance -->
+        <Label 
+            Grid.Row="5"
             Grid.Column="1"
-            Text="{Binding Balance, UpdateSourceTrigger=PropertyChanged}"/>
-
+            Style="{StaticResource FormLabel}"
+            Content="INITIAL BALANCE"/>
+        <!--<TextBox 
+            Validation.ErrorTemplate="{x:Null}"
+            Grid.Row="6"
+            Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Balance" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:DoubleValidation />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <TextBox.Style>
+                <Style BasedOn="{StaticResource FormInput}" TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BrushError}"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>-->
+        <TextBox 
+            Grid.Row="6"
+            Grid.Column="1"
+            Text="{Binding BalanceField, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock 
-            Grid.Row="5" 
+            Grid.Row="7" 
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
             Text="{Binding BalanceErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <!-- General error message -->
         <TextBlock 
-            Grid.Row="6"
+            Grid.Row="8"
             Grid.Column="1"
             Foreground="{StaticResource BrushError}"
             Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <!-- Submit button -->
         <Button
-            Grid.Row="7"
+            Grid.Row="9"
             Grid.Column="1"
             Style="{StaticResource ButtonPrimary}"
             Content="Save"
