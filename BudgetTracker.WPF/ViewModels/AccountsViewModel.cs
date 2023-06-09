@@ -25,8 +25,11 @@ namespace BudgetTracker.WPF.ViewModels
             {
                 _accounts = value;
                 OnPropertyChanged(nameof(Accounts));
+                OnPropertyChanged(nameof(AccountsEmpty));
             }
         }
+
+        public bool AccountsEmpty => Accounts.Count == 0;
 
         public ICommand ViewCreateAccountFormCommand { get; }
         public ICommand RemoveAccountCommand { get; }

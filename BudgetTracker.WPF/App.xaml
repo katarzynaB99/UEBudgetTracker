@@ -64,9 +64,11 @@
                  <views:UpdateCategoryFormView />
              </DataTemplate>
 
-             <DataTemplate DataType="{x:Type viewmodels:UpdateTransactionFormViewModel}">
-                 <views:UpdateTransactionFormView/>
-             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:UpdateTransactionFormViewModel}">
+                <views:UpdateTransactionFormView/>
+            </DataTemplate>
+
+             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
