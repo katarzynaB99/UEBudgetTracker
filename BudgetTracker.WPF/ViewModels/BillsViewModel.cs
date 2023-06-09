@@ -25,6 +25,8 @@ namespace BudgetTracker.WPF.ViewModels
             }
         }
 
+        public bool BillsEmpty => Bills.Count == 0;
+
         public ICommand ViewCreateBillFormCommand { get; }
 
         public BillsViewModel(IUserStore userStore, IRenavigator createBillRenavigator)

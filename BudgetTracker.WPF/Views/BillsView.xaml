@@ -17,10 +17,25 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <!-- Page heading -->
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Bills" Style="{StaticResource H1}" />
+            <!-- Create bill button -->
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonPrimary}" Content="Add bill" Command="{Binding ViewCreateBillFormCommand}" />
         </Grid>
 
+        <!-- Empty bills list message -->
+        <TextBlock 
+            Grid.Row="1" 
+            Foreground="{DynamicResource BrushLabels}" 
+            Background="{DynamicResource BrushBackgroundPane}" 
+            Margin="10 15" 
+            Padding="10 15" 
+            Height="48" 
+            Text="No bills added yet." 
+            VerticalAlignment="Top"
+            Visibility="{Binding BillsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <!-- List of bills -->
         <ListView Grid.Row="1" BorderBrush="Transparent" ItemsSource="{Binding Bills}">
             <ListView.View>
                 <GridView>
